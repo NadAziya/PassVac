@@ -1,26 +1,32 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import Navigation from "./Navigation/Navigation";
-import Welcome from "./screens/Welcome";
-import Using from "./screens/Using";
-import Auth from "./screens/Auth";
-import Otp from "./screens/Otp";
-import SignIn from "./screens/SignIn";
+import React, { useState } from "react";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
 
-const Stack = createStackNavigator();
+import Navigator from "./Navigation/Navigator";
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Navigation" component={Navigation} />
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="Using" component={Using} />
-        <Stack.Screen name="Auth" component={Auth} />
-        <Stack.Screen name="Otp" component={Otp} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+const fetchFonts = () => {
+  return Font.loadAsync({
+    "open-sens": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sens-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+    muli: require("./assets/fonts/muli.regular.ttf"),
+    "muli-bold": require("./assets/fonts/Muli-Bold.ttf"),
+    "segoe-ui": require("./assets/fonts/Segoe-UI.ttf"),
+    "segeo-ui-bold": require("./assets/fonts/Segoe-UI-Bold.ttf"),
+  });
+};
+
+export default function App(props) {
+  const [fontLoad, setFontLoad] = useState(false);
+
+  if (!fontLoad) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoad(true)}
+        onError={console.warn}
+      />
+    );
+  }
+
+  return <Navigator />;
 }
