@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { OTP } from "react-native-otp-form";
 import ButtonMain from "../components/MainButton";
 
-export default function Otp() {
+export default function Otp(props, navigation) {
   return (
     <View style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
       <Text
@@ -68,7 +68,12 @@ export default function Otp() {
           marginTop: 24,
         }}
       >
-        <ButtonMain style={{ width: 100 }}>Vérifier</ButtonMain>
+        <ButtonMain
+          style={{ width: 100 }}
+          onPress={() => props.navigation.navigate("SignIn")}
+        >
+          Vérifier
+        </ButtonMain>
       </View>
     </View>
   );

@@ -2,6 +2,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import { Ionicons } from "@expo/vector-icons";
+
 import Navigation from "./Navigation";
 import Welcome from "../screens/Welcome";
 import Using from "../screens/Using";
@@ -15,7 +17,16 @@ const Navigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Navigation" component={Navigation} />
+        <Stack.Screen
+          name="Navigation"
+          component={Navigation}
+          options={{
+            headerTitle: "Options",
+            headerRight: () => (
+              <Ionicons name="ios-menu" size={24} color="black" />
+            ),
+          }}
+        />
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Using" component={Using} />
         <Stack.Screen name="Auth" component={Auth} />

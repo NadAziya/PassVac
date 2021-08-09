@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import ButtonMain from "../components/MainButton";
 import Input from "../components/Input";
 
-export default function Auth() {
+export default function Auth(props, navigation) {
   return (
     <View style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
       <View
@@ -42,7 +42,12 @@ export default function Auth() {
         />
       </View>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <ButtonMain style={{ width: 100 }}>Continuer</ButtonMain>
+        <ButtonMain
+          style={{ width: 100 }}
+          onPress={() => props.navigation.navigate("Otp")}
+        >
+          Continuer
+        </ButtonMain>
       </View>
     </View>
   );
