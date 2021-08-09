@@ -12,6 +12,7 @@ export default function Auth() {
           justifyContent: "center",
           alignItems: "center",
           marginTop: 40,
+          height: "25%",
         }}
       >
         <Image
@@ -26,17 +27,18 @@ export default function Auth() {
           color: "gray",
           textAlign: "center",
           marginHorizontal: 16,
-          marginVertical: 24,
+          marginVertical: 30,
         }}
       >
         Vous recevrez un code à 6 chiffres pour effectuer la validation
       </Text>
+
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Input
           placeholder="Entrez votre numero"
           blurOnSubmit
           keyboardType="phone-pad"
-          style={{ width: "75%", height: 45, marginBottom: 24 }}
+          style={{ width: "80%", height: 45, marginBottom: 15 }}
         />
       </View>
       <View style={{ justifyContent: "center", alignItems: "center" }}>

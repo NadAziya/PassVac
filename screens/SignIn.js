@@ -6,16 +6,18 @@ import { Ionicons } from "@expo/vector-icons";
 import ButtonMain from "../components/MainButton";
 import Input from "../components/Input";
 import Colors from "../constants/colors/Colors";
+//import CheckBox from "@react-native-community/checkbox";
 
 export default function SignIn() {
-  const [isSelected, setSelection] = useState(false);
+  //const [toggleCheckBox, setToggleCheckBox] = useState(false);
   return (
-    <View style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
+    <View style={{ height: "100%", width: "100%", backgroundColor: "white" }}>
       <View
         style={{
           justifyContent: "center",
           alignItems: "center",
           marginTop: 16,
+          height: "25%",
         }}
       >
         <Avatar
@@ -57,9 +59,14 @@ export default function SignIn() {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          height: "10%",
         }}
       >
-        <CheckBox value={isSelected} onValueChange={setSelection} />
+        {/* <CheckBox
+          disabled={false}
+          value={toggleCheckBox}
+          onValueChange={(newValue) => setToggleCheckBox(newValue)}
+        /> */}
         <Text
           style={{
             marginTop: 2,
@@ -80,6 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 16,
+    height: "35%",
   },
   viewInput: {
     justifyContent: "center",
@@ -87,5 +95,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
     width: "100%",
+    height: "30%",
   },
 });

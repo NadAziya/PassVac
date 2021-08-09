@@ -5,7 +5,7 @@ import ButtonMain from "../components/MainButton";
 
 export default function Otp() {
   return (
-    <View>
+    <View style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
       <Text
         style={{
           fontFamily: "open-sens-bold",
