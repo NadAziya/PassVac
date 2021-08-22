@@ -17,7 +17,7 @@ export default ButtonMain;
 const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.third,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,

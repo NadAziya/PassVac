@@ -2,36 +2,48 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { Ionicons } from "@expo/vector-icons";
-
-import Navigation from "./Navigation";
-import Welcome from "../screens/Welcome";
-import Using from "../screens/Using";
 import Auth from "../screens/Auth";
 import Otp from "../screens/Otp";
-import SignIn from "../screens/SignIn";
+
+import SignInCostum from "../screens/SignIn2";
+import Info from "../screens/app/info";
 
 const Stack = createStackNavigator();
 
 const Navigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="SignInCostum">
         <Stack.Screen
-          name="Navigation"
-          component={Navigation}
+          name="Auth"
+          component={Auth}
           options={{
-            headerTitle: "Options",
-            headerRight: () => (
-              <Ionicons name="ios-menu" size={24} color="black" />
-            ),
+            headerTitle: "Authentifiez-vous",
           }}
         />
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="Using" component={Using} />
-        <Stack.Screen name="Auth" component={Auth} />
-        <Stack.Screen name="Otp" component={Otp} />
-        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen
+          name="Otp"
+          component={Otp}
+          options={{
+            headerTitle: "Vérifier le code",
+          }}
+        />
+
+        <Stack.Screen
+          name="SignInCostum"
+          component={SignInCostum}
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="Info"
+          component={Info}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
