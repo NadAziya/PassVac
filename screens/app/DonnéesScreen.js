@@ -1,0 +1,144 @@
+import React, { useState, useEffect, useCallback } from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  Pressable,
+  Modal,
+  Text,
+  View,
+} from "react-native";
+import Donnees from "../../components/AccueilComponents/Donnees";
+import Colors from "../../constants/colors/Colors";
+import firebase from "firebase";
+import "@firebase/auth";
+
+const Donnee = (props) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [test, setTest] = useState([]);
+  const db = firebase.firestore();
+
+  const fetchData = useCallback(async () => {
+    try {
+      let currentUser = firebase.auth().currentUser;
+
+      const data = await db
+        .collection("users")
+        .doc(currentUser.phoneNumber)
+        .collection("historique")
+        .get();
+
+      setTest(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
+  console.log(test, "hhhhhh");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  return (
+    <View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            {/*ici commmence le code de la modal */}
+            <Text style={styles.modalText}>Test PCR Covid-19</Text>
+
+            <Text style={{ fontWeight: "600", fontSize: 19, marginBottom: 4 }}>
+              Date du Test :{" "}
+            </Text>
+            <Text style={{ marginBottom: 25, color: "grey", fontSize: 16 }}>
+              12/10/2020
+            </Text>
+
+            <Text style={{ fontWeight: "600", fontSize: 19, marginBottom: 4 }}>
+              Centre de Test :{" "}
+            </Text>
+            <Text style={{ marginBottom: 25, color: "grey", fontSize: 16 }}>
+              Laboratoire Zerrar
+            </Text>
+
+            <Text style={{ fontWeight: "600", fontSize: 19, marginBottom: 4 }}>
+              Résultat du Test :{" "}
+            </Text>
+            <Text style={{ marginBottom: 30, color: "red", fontSize: 16 }}>
+              Positif
+            </Text>
+
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Fermer</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+      <ScrollView>
+        {test.map((tes) => (
+          <Donnees
+            key={tes.etat}
+            TestResult={tes.etat}
+            TestDate={tes.date_test}
+            onPress={() => setModalVisible(true)}
+          />
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 50,
+    color: Colors.third,
+    textAlign: "center",
+    fontWeight: "700",
+    fontSize: 25,
+  },
+});
+
+export default Donnee;

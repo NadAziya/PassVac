@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import {
   Text,
@@ -9,10 +9,16 @@ import {
   Dimensions,
   StyleSheet,
 } from "react-native";
+import AuthContext from "../../auth/context";
+import AuthStorage from "../../auth/storage";
 
-export default function info() {
+import ButtonMain from "../../components/MainButton";
+
+export default function info(props, navigation) {
   const [sliderState, setSliderState] = useState({ currentPage: 0 });
   const { width, height } = Dimensions.get("window");
+  const { info, setInfo } = useContext(AuthContext).info;
+
   const setSliderPage = (event) => {
     const { currentPage } = sliderState;
     const { x } = event.nativeEvent.contentOffset;
@@ -60,13 +66,141 @@ export default function info() {
               </Text>
             </View>
           </View>
-          <View style={{ width, height }}>
-            <Text>Screen 2</Text>
+          <View style={{ height, width }}>
+            <Text style={styles.textWelcome}>Welcome IN GoPass !</Text>
+
+            <View style={styles.container}>
+              <View style={styles.storeContainer}>
+                <View>
+                  <Image
+                    style={styles.store}
+                    source={require("../../assets/img/store.jpg")}
+                  />
+                </View>
+                <View style={styles.textContainer}>
+                  <Text style={styles.textInfo}>
+                    GoPass stock seulement vos informations personnelles
+                    d'identification sur votre appareil mobile.
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.storeContainer}>
+                <View>
+                  <Image
+                    style={styles.store}
+                    source={require("../../assets/img/codeQr.png")}
+                  />
+                </View>
+                <View style={styles.textContainer}>
+                  <Text style={styles.textInfo}>
+                    GoPass génére un code Qr coloré qui représente votre état
+                    sanitaire face à la covid-19.
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.storeContainer}>
+                <View>
+                  <Image
+                    style={styles.store}
+                    source={require("../../assets/img/travel.png")}
+                  />
+                </View>
+                <View style={styles.textContainer}>
+                  <Text style={styles.textInfo}>
+                    Vérifier la validité de votre test, vaccin et profiter de
+                    vos voyages et de votre vie.
+                  </Text>
+                </View>
+              </View>
+            </View>
           </View>
+
           <View style={{ width, height }}>
-            <Text>Screen 3</Text>
+            <View style={{ height, width }}>
+              <Text style={styles.textWelcome}>
+                N'oubliez pas les gestes barriére !
+              </Text>
+
+              <View style={styles.container}>
+                <View style={styles.gesteContainer}>
+                  <View>
+                    <Image
+                      style={styles.store}
+                      source={require("../../assets/img/masque.png")}
+                    />
+                  </View>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.textInfo}>
+                      pour votre sécurité portez un masque chirurgical jetable.
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={styles.gesteContainer}>
+                  <View>
+                    <Image
+                      style={styles.store}
+                      source={require("../../assets/img/serre_main.png")}
+                    />
+                  </View>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.textInfo}>
+                      saluer sans se serrer la main, éviter les embrassades.
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={styles.gesteContainer}>
+                  <View>
+                    <Image
+                      style={styles.store}
+                      source={require("../../assets/img/lavmain.png")}
+                    />
+                  </View>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.textInfo}>
+                      se laver trés régulierement les mains.
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.gesteContainer}>
+                  <View>
+                    <Image
+                      style={styles.store}
+                      source={require("../../assets/img/distance.png")}
+                    />
+                  </View>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.textInfo}>
+                      rester toujours a plus d'un métre les uns des autres.
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{ justifyContent: "center", alignItems: "center" }}
+                >
+                  <ButtonMain
+                    onPress={() => {
+                      AuthStorage.storeInfo(true);
+                      setInfo(true);
+                    }}
+                    style={{
+                      width: 180,
+                      height: 45,
+                      marginTop: 50,
+                      justifyContent: "center",
+                    }}
+                  >
+                    OK, j'ai compris !
+                  </ButtonMain>
+                </View>
+              </View>
+            </View>
           </View>
         </ScrollView>
+
         <View style={styles.paginationWrapper}>
           {Array.from(Array(3).keys()).map((key, index) => (
             <View
@@ -85,7 +219,7 @@ export default function info() {
 const styles = StyleSheet.create({
   paginationWrapper: {
     position: "absolute",
-    bottom: 150,
+    bottom: 130,
     left: 0,
     right: 0,
     justifyContent: "center",
@@ -115,5 +249,43 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginHorizontal: 20,
     marginTop: 6,
+  },
+  textWelcome: {
+    textAlign: "center",
+    fontSize: 23,
+
+    fontFamily: "segeo-ui-bold",
+    marginTop: 25,
+  },
+  container: {
+    flex: 1,
+    flexDirection: "column",
+
+    padding: 15,
+  },
+  storeContainer: {
+    flexDirection: "row",
+    marginTop: 25,
+    padding: 10,
+  },
+  store: {
+    width: 80,
+    height: 80,
+    borderRadius: 80 / 2,
+  },
+  textContainer: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 10,
+    marginLeft: 12,
+  },
+  textInfo: {
+    lineHeight: 20,
+    fontFamily: "muli",
+    fontSize: 16,
+  },
+  gesteContainer: {
+    flexDirection: "row",
+    marginTop: 25,
   },
 });

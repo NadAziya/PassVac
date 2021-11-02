@@ -21,7 +21,7 @@ export default function Otp(props, navigation) {
 
   const onPressVerifyCode = () => {
     if (code) {
-      props.navigation.navigate("SignIn");
+      props.navigation.navigate("SignInCostum");
     }
   };
   useEffect(() => {

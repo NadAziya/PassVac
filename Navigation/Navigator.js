@@ -1,52 +1,239 @@
+import "react-native-gesture-handler";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { TouchableOpacity, View, Image } from "react-native";
+import {
+  NavigationContainer,
+  getFocusedRouteNameFromRoute,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import Auth from "../screens/Auth";
-import Otp from "../screens/Otp";
+import { useNavigation } from "@react-navigation/native";
 
-import SignInCostum from "../screens/SignIn2";
-import Info from "../screens/app/info";
+import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import Accueil from "../screens/app/Accueil";
+
+import MonPass from "../screens/app/MonPass";
+
+import Donnee from "../screens/app/DonnéesScreen";
+import Scanner from "../screens/app/Scann";
+import Colors from "../constants/colors/Colors";
+import AvantScan from "../screens/app/AvantScan";
+import CentreVac from "../screens/app/CentreVac";
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
-const Navigator = () => {
+const NavigationDrawerStructure = (props) => {
+  //Structure for the navigatin Drawer
+  const toggleDrawer = () => {
+    //Props to open/close the drawer
+    props.navigationProps.toggleDrawer();
+  };
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Info">
-        <Stack.Screen
-          name="Auth"
-          component={Auth}
-          options={{
-            headerTitle: "Authentifiez-vous",
-          }}
-        />
-        <Stack.Screen
-          name="Otp"
-          component={Otp}
-          options={{
-            headerTitle: "Vérifier le code",
-          }}
-        />
-
-        <Stack.Screen
-          name="SignInCostum"
-          component={SignInCostum}
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        <Stack.Screen
-          name="Info"
-          component={Info}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{ flexDirection: "row" }}>
+      <TouchableOpacity onPress={() => toggleDrawer()}>
+        {/*Donute Button Image */}
+        <View style={{ marginLeft: 10 }}>
+          <Ionicons name="ios-menu" size={30} color="black" />
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
-export default Navigator;
+const GoBackFunction = (props) => {
+  const goBack = () => {
+    props.navigationProps.goBack();
+  };
+  return (
+    <TouchableOpacity
+      style={{ marginLeft: 10, marginTop: 2 }}
+      onPress={() => goBack()}
+    >
+      <AntDesign name="arrowleft" size={30} color="black" />
+    </TouchableOpacity>
+  );
+};
+
+const getHeaderTitle = (route) => {
+  const routeName = getFocusedRouteNameFromRoute(route) ?? "Feed";
+
+  switch (routeName) {
+    case "Accueil":
+      return "Accueil";
+    case "Scann":
+      return "Vérification";
+    case "Donnee":
+      return "Données sur la santé";
+  }
+};
+
+function Home() {
+  return (
+    <Stack.Navigator initialRouteName="Accueil">
+      <Stack.Screen
+        options={{
+          title: "Accueil",
+          headerShown: false,
+        }}
+        name="Accueil"
+        component={Accueil}
+      />
+
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="Donnees"
+        component={Donnee}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function Setting({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="MonPass">
+      <Stack.Screen
+        options={{
+          headerTitle: "MonPass",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="MonPass"
+        component={MonPass}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function CentreVaccination({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="CentreVac">
+      <Stack.Screen
+        options={{
+          headerTitle: "Les centres de vaccination",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="CentreVac"
+        component={CentreVac}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function Scann() {
+  return (
+    <Stack.Navigator initialRouteName="AvantScan">
+      <Stack.Screen
+        options={{
+          headerTitle: "Vérification",
+          headerShown: false,
+        }}
+        name="AvantScan"
+        component={AvantScan}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="Scanner"
+        component={Scanner}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function Navigator() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Accueil"
+      tabBarOptions={{
+        activeTintColor: Colors.third,
+      }}
+    >
+      <Tab.Screen
+        name="Accueil"
+        component={Home}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Accueil",
+          tabBarIcon: () => <Ionicons name="home" size={24} color="black" />,
+        }}
+      />
+      <Tab.Screen
+        name="Scann"
+        component={Scann}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Scann",
+          tabBarIcon: () => (
+            <MaterialCommunityIcons
+              name="qrcode-scan"
+              size={24}
+              color="black"
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+const HomeScreenStack = ({ navigation }) => {
+  return (
+    <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Screen
+        name="Navigator"
+        component={Navigator}
+        options={({ route }) => ({
+          headerTitle: getHeaderTitle(route),
+
+          headerLeft: () => (
+            <NavigationDrawerStructure navigationProps={navigation} />
+          ),
+
+          headerTintColor: "black", //Set Header text color
+          headerTitleStyle: {
+            fontWeight: "bold", //Set Header text style
+          },
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const HomeNavigation = () => {
+  return (
+    <Drawer.Navigator
+      drawerContentOptions={{
+        activeTintColor: "#e91e63",
+        itemStyle: { marginVertical: 5 },
+      }}
+    >
+      <Drawer.Screen
+        name="HomeScreenStack"
+        options={{ drawerLabel: "Accueil", headerShown: false }}
+        component={HomeScreenStack}
+      />
+      <Drawer.Screen
+        name="Setting"
+        options={{ drawerLabel: "MonPass", headerShown: false }}
+        component={Setting}
+      />
+      <Drawer.Screen
+        name="CentreVac"
+        options={{ drawerLabel: "Centre de Vaccination", headerShown: false }}
+        component={CentreVaccination}
+      />
+    </Drawer.Navigator>
+  );
+};
+export default HomeNavigation;
