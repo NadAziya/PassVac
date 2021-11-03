@@ -17,11 +17,10 @@ import Colors from "../constants/colors/Colors";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import firebase from "firebase";
-import * as FileSystem from "expo-file-system";
 
 export default function Header(props) {
   const [pickedImage, setPickedImage] = useState();
-  const upload = firebase.uploadString();
+
   const storage = firebase.storage();
   const ref = firebase.storage().ref();
   const db = firebase.firestore();
@@ -40,7 +39,7 @@ export default function Header(props) {
     return true;
   };
 
-  const takeImageHandler = async () => {
+  const takeImageHandler = async (uri) => {
     const hasPermissions = await verifyPermissions();
     if (!hasPermissions) {
       return;
@@ -53,25 +52,18 @@ export default function Header(props) {
 
     setPickedImage(image.uri);
     props.onImageTaken(image.uri);
+    const response = await fetch(uri);
+    const blob = await response.blob();
 
-    const imageRef = ref.child(props.id.concat(".jpg"));
+    const reff = ref.child(props.id.concat(".jpg"));
 
-    const base64 = await FileSystem.readAsStringAsync(image.uri, {
-      encoding: "base64",
-    });
-
-    console.log("Dagi......");
-    console.log(image);
-    console.log(image.uri);
-    console.log(base64);
-
-    const uploadTask = imageRef.putString(base64.toString(), "base64", {
-      contentType: "image/jpg",
-    });
-
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
-      imageRef.getDownloadURL().then(async (url) => {
-        console.log(url);
+    reff
+      .put(blob)
+      .then((snapshot) => {
+        return snapshot.ref.getDownloadURL();
+      })
+      .then((downloadURL) => {
+        console.log(downloadURL);
         try {
           await db.collection("users").doc(props.id).update({
             imageuri: url,
@@ -81,26 +73,16 @@ export default function Header(props) {
         } catch (err) {
           console.log(err);
         }
+        return downloadURL;
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
-    // imageRef.put(image).then((snapshot) => {
-    //   imageRef.getDownloadURL().then(async (url) => {
-    //     console.log(url);
-    //     try {
-    //       await db.collection("users").doc(props.id).update({
-    //         imageuri: url,
-    //       });
-    //       props.onImageTaken(url);
-    //       console.log("hiiii");
-    //     } catch (err) {
-    //       console.log(err);
-    //     }
-    //   });
-    // });
-
-    console.log(props.id);
-    console.log(image);
   };
+  // imageRef.getDownloadURL().then(async (url) => {
+  // console.log(url);
+
+  //};
 
   return (
     <View style={styles.container}>

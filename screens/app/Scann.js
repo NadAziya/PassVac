@@ -56,13 +56,7 @@ export default function Accueil() {
         )}
       </BarCodeScanner>
 
-      {scanned && (
-        <AlertVerif
-          text={text}
-          nom="{userInfo.nom}"
-          prenom="{userInfo.prenom}"
-        />
-      )}
+      {scanned && <AlertVerif text={text} />}
       {scanned && (
         <Button
           title={"Tapez pour scanner encore"}

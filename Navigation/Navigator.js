@@ -25,6 +25,7 @@ import Scanner from "../screens/app/Scann";
 import Colors from "../constants/colors/Colors";
 import AvantScan from "../screens/app/AvantScan";
 import CentreVac from "../screens/app/CentreVac";
+import Vaccin from "../screens/app/VaccinType";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -87,13 +88,35 @@ function Home() {
         name="Accueil"
         component={Accueil}
       />
+    </Stack.Navigator>
+  );
+}
 
+function Historique({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="Donnees">
       <Stack.Screen
         options={{
-          headerShown: false,
+          headerTitle: "Mon Historique ",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
         }}
         name="Donnees"
         component={Donnee}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function VaccinType({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="TypeVaccin">
+      <Stack.Screen
+        options={{
+          headerTitle: "Les types des vaccins ",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="TypeVaccin"
+        component={Vaccin}
       />
     </Stack.Navigator>
   );
@@ -232,6 +255,16 @@ const HomeNavigation = () => {
         name="CentreVac"
         options={{ drawerLabel: "Centre de Vaccination", headerShown: false }}
         component={CentreVaccination}
+      />
+      <Drawer.Screen
+        name="Donnees"
+        options={{ drawerLabel: "Mon historique", headerShown: false }}
+        component={Historique}
+      />
+      <Drawer.Screen
+        name="Vaccin"
+        options={{ drawerLabel: "Les types des vaccins", headerShown: false }}
+        component={VaccinType}
       />
     </Drawer.Navigator>
   );

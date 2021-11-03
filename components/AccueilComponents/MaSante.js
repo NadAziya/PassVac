@@ -1,9 +1,14 @@
 import React from "react";
 import { Text, View, Image, StyleSheet } from "react-native";
-
+import * as Animatable from "react-native-animatable";
 const MaSante = (props) => {
   return (
-    <View style={{ ...styles.card, ...props.style }}>
+    <Animatable.View
+      animation="pulse"
+      easing="ease-out"
+      iterationCount="infinite"
+      style={{ ...styles.card, ...props.style }}
+    >
       <Image
         style={{
           width: 80,
@@ -32,7 +37,7 @@ const MaSante = (props) => {
           {props.text}
         </Text>
       </View>
-    </View>
+    </Animatable.View>
   );
 };
 

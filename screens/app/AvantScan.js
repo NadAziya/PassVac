@@ -5,13 +5,14 @@ import {
   Text,
   Image,
   TouchableHighlight,
+  ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/colors/Colors";
 
 const AvantScan = (props, navigation) => {
   return (
-    <View style={{ backgroundColor: "white", height: "100%" }}>
+    <ScrollView style={{ backgroundColor: "white", height: "100%" }}>
       <View
         style={{
           flexDirection: "column",
@@ -24,24 +25,7 @@ const AvantScan = (props, navigation) => {
           source={require("../../assets/img/scanme.jpg")}
         />
       </View>
-      <View style={{ flexDirection: "column", alignItems: "center" }}>
-        <TouchableHighlight
-          style={styles.btnClickContain}
-          onPress={() => {
-            props.navigation.navigate("Scanner");
-          }}
-        >
-          <View style={styles.btnContainer}>
-            <Ionicons
-              style={styles.btnIcon}
-              name="qr-code-outline"
-              size={24}
-              color="white"
-            />
-            <Text style={styles.btnText}> Ouvrir le vérificateur</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
+
       <View>
         <Text
           style={{
@@ -68,7 +52,25 @@ const AvantScan = (props, navigation) => {
           vérifier cette preuve !
         </Text>
       </View>
-    </View>
+      <View style={{ flexDirection: "column", alignItems: "center" }}>
+        <TouchableHighlight
+          style={styles.btnClickContain}
+          onPress={() => {
+            props.navigation.navigate("Scanner");
+          }}
+        >
+          <View style={styles.btnContainer}>
+            <Ionicons
+              style={styles.btnIcon}
+              name="qr-code-outline"
+              size={24}
+              color="white"
+            />
+            <Text style={styles.btnText}> Ouvrir le vérificateur</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({

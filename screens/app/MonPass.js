@@ -76,37 +76,93 @@ const MonPass = ({ props, navigation }) => {
   }, []);
 
   const renderElement = () => {
-    if (userInfo.vaccination == "Non vacciné(e)")
-      return (
-        <QRCode
-          value={[
-            {
-              data: `"Invalid" ${userInfo.nom} ${userInfo.prenom}`,
-              nom: `${userInfo.nom}`,
-              prenom: `${userInfo.prenom}`,
-            },
-          ]}
-          color="red"
-          size={200}
-        />
-      );
-    else if (userInfo.vaccination == "vacciné(e)") {
-      return (
-        <QRCode
-          value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
-          color="green"
-          size={200}
-        />
-      );
+    if (userInfo.vaccination == "Non vacciné(e)") {
+      if (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") {
+        return (
+          <QRCode
+            value={[
+              {
+                data: `"Invalid" ${userInfo.nom} ${userInfo.prenom}`,
+                nom: `${userInfo.nom}`,
+                prenom: `${userInfo.prenom}`,
+              },
+            ]}
+            color="black"
+            size={200}
+          />
+        );
+      } else {
+        return (
+          <QRCode
+            value={[
+              {
+                data: `"Invalid" ${userInfo.nom} ${userInfo.prenom}`,
+                nom: `${userInfo.nom}`,
+                prenom: `${userInfo.prenom}`,
+              },
+            ]}
+            size={200}
+            color="red"
+          />
+        );
+      }
+    } else {
+      if (
+        (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
+        userInfo.date_2dose == "00-00-0000"
+      ) {
+        return (
+          <QRCode
+            value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
+            color="blue"
+            logo={require("../../assets/img/valide.png")}
+            logoSize={50}
+            size={200}
+          />
+        );
+      } else if (
+        userInfo.etat == "Positif(ve)" &&
+        userInfo.date_2dose == "00-00-0000"
+      ) {
+        return (
+          <QRCode
+            value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
+            color="red"
+            logo={require("../../assets/img/valide.png")}
+            logoSize={50}
+            size={200}
+          />
+        );
+      } else {
+        if (
+          (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
+          userInfo.date_2dose !== "00-00-0000"
+        ) {
+          return (
+            <QRCode
+              value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
+              color="green"
+              logo={require("../../assets/img/valide.png")}
+              logoSize={50}
+              size={200}
+            />
+          );
+        } else if (
+          userInfo.etat == "Positif(ve)" &&
+          userInfo.date_2dose !== "00-00-0000"
+        ) {
+          return (
+            <QRCode
+              value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
+              color="orange"
+              logo={require("../../assets/img/valide.png")}
+              logoSize={50}
+              size={200}
+            />
+          );
+        }
+      }
     }
-    //if (userInfo.vaccination == "vacciné(e)" && userInfo.test == "positif") {
-    // return (
-    //  <QRCode
-    //  logo={require("../../assets/img/valide.png")}
-    //  logoSize={50}
-    //    color="red"
-    //  />
-    //   );
   };
 
   return (

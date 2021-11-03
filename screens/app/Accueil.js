@@ -47,6 +47,7 @@ const Accueil = (props, navigation) => {
         .then((snapshot) => {
           if (snapshot.exists) {
             setUserInfo(snapshot.data());
+
             setLoading(false);
             setRefreshing(false);
           } else {
@@ -62,32 +63,74 @@ const Accueil = (props, navigation) => {
   }, []);
 
   const renderElement = () => {
-    if (
-      (userInfo.vaccination == "Non vacciné(e)" &&
-        userInfo.etat == "Negatif(ve)") ||
-      userInfo.etat == "/"
-    ) {
-      return (
-        <MaSante
-          style={{ backgroundColor: "#9D99C9" }}
-          children=" Rendez-vous au centre de vaccination, "
-          text="afin de vous munir d'un code QR
-        valide"
-        />
-      );
-    } else if (
-      (userInfo.etat == "Positif(ve)" &&
-        userInfo.vaccination == "Non vacciné(e)") ||
-      userInfo.vaccination == "vacciné(e)"
-    ) {
-      return (
-        <MaSante
-          style={{ backgroundColor: "red" }}
-          children="Isolemment recommandé,"
-          text=" Je m'isole immédiatement après 
+    if (userInfo.vaccination == "Non vacciné(e)") {
+      if (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") {
+        return (
+          <MaSante
+            style={{ backgroundColor: "#9D99C9" }}
+            children=" Rendez-vous au centre de vaccination, "
+            text="afin de vous munir d'un code QR
+      valide"
+          />
+        );
+      } else {
+        return (
+          <MaSante
+            style={{ backgroundColor: "orange" }}
+            children="Isolemment recommandé,"
+            text=" Veuillez patienter 3 mois pour etre vacciné(e) "
+          />
+        );
+      }
+    } else {
+      if (
+        (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
+        userInfo.date_2dose == "00-00-0000"
+      ) {
+        return (
+          <MaSante
+            style={{ backgroundColor: "black" }}
+            children="Vaccinée une seule dose ,"
+            text=" vaccin apres 1 mois "
+          />
+        );
+      } else if (
+        userInfo.etat == "Positif(ve)" &&
+        userInfo.date_2dose == "00-00-0000"
+      ) {
+        return (
+          <MaSante
+            style={{ backgroundColor: "black" }}
+            children="Vaccinée une seule dose Isolemment recommandé,"
+            text=" vaccin apres 1 mois refaire test "
+          />
+        );
+      } else {
+        if (
+          (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
+          userInfo.date_2dose !== "00-00-0000"
+        ) {
+          return (
+            <MaSante
+              style={{ backgroundColor: "green" }}
+              children="Etat de santé excellente,"
+              text=" Veuillez vous protéger durant ce temps "
+            />
+          );
+        } else if (
+          userInfo.etat == "Positif(ve)" &&
+          userInfo.date_2dose !== "00-00-0000"
+        ) {
+          return (
+            <MaSante
+              style={{ backgroundColor: "red" }}
+              children="Isolemment recommandé,"
+              text=" Je m'isole immédiatement après 
         avoir recu mon resultat "
-        />
-      );
+            />
+          );
+        }
+      }
     }
   };
 
@@ -137,6 +180,9 @@ const Accueil = (props, navigation) => {
           </Text>
           <TouchableOpacity
             style={{ justifyContent: "center", alignItems: "center" }}
+            onPress={() => {
+              props.navigation.navigate("Setting");
+            }}
           >
             <Card style={styles.card}>
               <View
@@ -175,6 +221,9 @@ const Accueil = (props, navigation) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={{ justifyContent: "center", alignItems: "center" }}
+            onPress={() => {
+              props.navigation.navigate("Vaccin");
+            }}
           >
             <Card style={styles.card}>
               <View
