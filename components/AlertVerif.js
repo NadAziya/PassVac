@@ -31,26 +31,16 @@ const AlertVerif = (props) => {
             fontSize: 17,
             fontWeight: "500",
             color: "white",
+            paddingRight: 150
           }}
         >
           {props.text}
         </Text>
-      </View>
+     </View>
 
-      <Text numberOfLines={1} style={{ textAlign: "center", color: "white" }}>
-        _________________________________
-      </Text>
+    
 
-      <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
-        {/*<AntDesign name="exclamationcircleo" size={24} color="black" />*/}
-        <AntDesign name="checkcircleo" size={25} color="white" />
-        <Text style={{ textAlign: "center", fontSize: 15, color: "white" }}>
-          {props.nom}
-        </Text>
-        <Text style={{ textAlign: "center", fontSize: 15, color: "white" }}>
-          {props.prenom}
-        </Text>
-      </View>
+    
     </View>
   );
 };

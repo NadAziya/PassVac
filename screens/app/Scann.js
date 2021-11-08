@@ -25,7 +25,7 @@ export default function Accueil() {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ data }) => {
+  const handleBarCodeScanned = ({ data}) => {
     setScanned(true);
     setText(data);
     console.log(data);

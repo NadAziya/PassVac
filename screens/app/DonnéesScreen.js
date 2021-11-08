@@ -13,8 +13,11 @@ import firebase from "firebase";
 import "@firebase/auth";
 
 const Donnee = (props) => {
+    const [loading, setLoading] = useState(false);
+
   const [modalVisible, setModalVisible] = useState(false);
   const [test, setTest] = useState([]);
+  const [tes, setTes] = useState({});
   const db = firebase.firestore();
 
   const fetchData = useCallback(async () => {
@@ -34,12 +37,18 @@ const Donnee = (props) => {
   });
   console.log(test, "hhhhhh");
 
+  const ouvrirModal = (tes) => {
+   setModalVisible(true)
+    setTes(tes)
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
   return (
     <View>
       <Modal
+      tes={tes}
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -57,7 +66,7 @@ const Donnee = (props) => {
               Date du Test :{" "}
             </Text>
             <Text style={{ marginBottom: 25, color: "grey", fontSize: 16 }}>
-              12/10/2020
+              {tes.date_test}
             </Text>
 
             <Text style={{ fontWeight: "600", fontSize: 19, marginBottom: 4 }}>
@@ -71,7 +80,7 @@ const Donnee = (props) => {
               Résultat du Test :{" "}
             </Text>
             <Text style={{ marginBottom: 30, color: "red", fontSize: 16 }}>
-              Positif
+              {tes.etat}
             </Text>
 
             <Pressable
@@ -89,7 +98,9 @@ const Donnee = (props) => {
             key={tes.etat}
             TestResult={tes.etat}
             TestDate={tes.date_test}
-            onPress={() => setModalVisible(true)}
+            onPress={() => {
+                      ouvrirModal(tes)
+                    }}
           />
         ))}
       </ScrollView>

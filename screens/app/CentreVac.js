@@ -12,12 +12,19 @@ import { Card } from "react-native-shadow-cards";
 import { Backdrop } from "react-native-backdrop";
 import { AntDesign } from "@expo/vector-icons";
 
+import { SearchBar } from 'react-native-elements';
+
 const CentreVac = (props) => {
   const [centre, setCentre] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = React.useState(false);
   const [visible, setVisible] = useState(false);
   const [cent, setCent] = useState({});
+   const [search, setSearch] = useState('')
+
+ const  updateSearch = (search) => {
+    setSearch( search )
+  };
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -44,6 +51,12 @@ const CentreVac = (props) => {
 
   return (
     <View style={{ backgroundColor: "white", height: "100%" }}>
+        <SearchBar
+        placeholder="Type Here..."
+        onChangeText={updateSearch}
+        value={search}
+        inputContainerStyle={{color: '#f2516'}}
+      />
       {loading ? (
         <ActivityIndicator
           size="large"

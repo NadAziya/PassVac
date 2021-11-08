@@ -43,7 +43,7 @@ const Accueil = (props, navigation) => {
       const profile = db
         .collection("users")
         .doc(currentUser.phoneNumber)
-        .get()
+        .get() 
         .then((snapshot) => {
           if (snapshot.exists) {
             setUserInfo(snapshot.data());
@@ -73,12 +73,12 @@ const Accueil = (props, navigation) => {
       valide"
           />
         );
-      } else {
+      } else {  
         return (
           <MaSante
-            style={{ backgroundColor: "orange" }}
+            style={{ backgroundColor: "red" }}
             children="Isolemment recommandé,"
-            text=" Veuillez patienter 3 mois pour etre vacciné(e) "
+            text=" Veuillez patienter 03mois pour être vacciné(e), respectez les gestes barriéres et protégez ainsi vos proches;"
           />
         );
       }
@@ -86,12 +86,12 @@ const Accueil = (props, navigation) => {
       if (
         (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
         userInfo.date_2dose == "00-00-0000"
-      ) {
+      ) { 
         return (
           <MaSante
-            style={{ backgroundColor: "black" }}
-            children="Vaccinée une seule dose ,"
-            text=" vaccin apres 1 mois "
+            style={{ backgroundColor: "orange" }}
+            children="Vacciné(e) d'une seule dose,"
+            text="N'oubliez pas votre rappel ! restez vigilant en respectant toujours les gestes barriéres. "
           />
         );
       } else if (
@@ -100,9 +100,10 @@ const Accueil = (props, navigation) => {
       ) {
         return (
           <MaSante
-            style={{ backgroundColor: "black" }}
-            children="Vaccinée une seule dose Isolemment recommandé,"
-            text=" vaccin apres 1 mois refaire test "
+            style={{ backgroundColor: "red" }}
+           children="Isolemment recommandé, vacciné(e) d'une seule dose,"
+              text=" Je m'isole immédiatement après 
+        avoir reçu mon résultat. "
           />
         );
       } else {
@@ -113,8 +114,8 @@ const Accueil = (props, navigation) => {
           return (
             <MaSante
               style={{ backgroundColor: "green" }}
-              children="Etat de santé excellente,"
-              text=" Veuillez vous protéger durant ce temps "
+              children="Mon Pass sanitaire est valide,"
+              text="je présente mon GoPass en ayant éffectué(e) mon vaccin et étant négatif(ve) au COVID-19."
             />
           );
         } else if (
@@ -124,10 +125,10 @@ const Accueil = (props, navigation) => {
           return (
             <MaSante
               style={{ backgroundColor: "red" }}
-              children="Isolemment recommandé,"
+              children="Isolemment recommandé, vacciné(e) totalement,"
               text=" Je m'isole immédiatement après 
-        avoir recu mon resultat "
-            />
+        avoir reçu mon résultat. "
+            /> 
           );
         }
       }
@@ -219,7 +220,7 @@ const Accueil = (props, navigation) => {
               </View>
             </Card>
           </TouchableOpacity>
-          <TouchableOpacity
+          <TouchableOpacity 
             style={{ justifyContent: "center", alignItems: "center" }}
             onPress={() => {
               props.navigation.navigate("Vaccin");

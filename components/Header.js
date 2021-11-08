@@ -52,21 +52,21 @@ export default function Header(props) {
 
     setPickedImage(image.uri);
     props.onImageTaken(image.uri);
-    const response = await fetch(uri);
-    const blob = await response.blob();
+    //const response = await fetch(uri);
+    // const blob = await response.blob();
 
-    const reff = ref.child(props.id.concat(".jpg"));
+    const imageRef = ref.child(props.id.concat(".jpg"));
 
-    reff
-      .put(blob)
+    ref
+      .putFile(imageRef)
       .then((snapshot) => {
         return snapshot.ref.getDownloadURL();
       })
-      .then((downloadURL) => {
+      .then(async (downloadURL) => {
         console.log(downloadURL);
         try {
           await db.collection("users").doc(props.id).update({
-            imageuri: url,
+            imageuri: downloadURL,
           });
           props.onImageTaken(url);
           console.log("hiiii");

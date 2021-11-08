@@ -19,6 +19,8 @@ import { Backdrop } from "react-native-backdrop";
 //import { QRCode } from "react-native-custom-qr-codes-expo";
 import QRCode from "react-native-qrcode-svg";
 import DetailPass from "../../components/DetailPass";
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons';
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -82,7 +84,7 @@ const MonPass = ({ props, navigation }) => {
           <QRCode
             value={[
               {
-                data: `"Invalid" ${userInfo.nom} ${userInfo.prenom}`,
+                data: `   Invalid ${userInfo.nom} ${userInfo.prenom}`,
                 nom: `${userInfo.nom}`,
                 prenom: `${userInfo.prenom}`,
               },
@@ -94,9 +96,9 @@ const MonPass = ({ props, navigation }) => {
       } else {
         return (
           <QRCode
-            value={[
+             value={[
               {
-                data: `"Invalid" ${userInfo.nom} ${userInfo.prenom}`,
+                data: `  Invalid ${userInfo.nom} ${userInfo.prenom}`,
                 nom: `${userInfo.nom}`,
                 prenom: `${userInfo.prenom}`,
               },
@@ -113,10 +115,14 @@ const MonPass = ({ props, navigation }) => {
       ) {
         return (
           <QRCode
-            value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
-            color="blue"
-            logo={require("../../assets/img/valide.png")}
-            logoSize={50}
+            value={[
+              {
+                data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                nom: `${userInfo.nom}`,
+                prenom: `${userInfo.prenom}`,
+              },
+            ]}
+            color="orange"
             size={200}
           />
         );
@@ -126,10 +132,15 @@ const MonPass = ({ props, navigation }) => {
       ) {
         return (
           <QRCode
-            value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
+          value={[
+              {
+                data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                nom: `${userInfo.nom}`,
+                prenom: `${userInfo.prenom}`,
+              },
+            ]}
             color="red"
-            logo={require("../../assets/img/valide.png")}
-            logoSize={50}
+           
             size={200}
           />
         );
@@ -140,7 +151,13 @@ const MonPass = ({ props, navigation }) => {
         ) {
           return (
             <QRCode
-              value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
+              value={[
+              {
+                data: `valide ${userInfo.nom} ${userInfo.prenom}`,
+                nom: `${userInfo.nom}`,
+                prenom: `${userInfo.prenom}`,
+              },
+            ]}
               color="green"
               logo={require("../../assets/img/valide.png")}
               logoSize={50}
@@ -153,8 +170,14 @@ const MonPass = ({ props, navigation }) => {
         ) {
           return (
             <QRCode
-              value={[{ data: `"valide" ${userInfo.nom} ${userInfo.prenom}` }]}
-              color="orange"
+             value={[
+              {
+                data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                nom: `${userInfo.nom}`,
+                prenom: `${userInfo.prenom}`,
+              },
+            ]} 
+              color="red"
               logo={require("../../assets/img/valide.png")}
               logoSize={50}
               size={200}
@@ -299,40 +322,70 @@ const MonPass = ({ props, navigation }) => {
             overlayColor="rgba(0,0,0,0.8)"
             backdropStyle={{
               backgroundColor: "#fff",
+           
             }}
           >
             <View
               style={{
-                justifyContent: "center",
-                alignItems: "center",
+     justifyContent: 'space-around',
+               marginLeft: 10,
                 padding: 10,
+                height: 300,
+                marginBottom: 10
               }}
             >
+            <View>
+             <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', }}>
+            <Text   style={{  fontSize: 18,  fontWeight: "600", marginRight: 10, color:'green' }}>Preuve de vaccination</Text>
+            {userInfo.vaccination === 'vacciné(e)' ?<MaterialIcons name="verified" size={40} color="green"/> : <Entypo name="circle-with-cross" size={40} color="red" />}
+             </View>
+               <Text numberOfLines={1} style={{ textAlign: "center" ,color: '#C0C0C0',fontWeight:'300' }}>
+                   _________________________________
+                </Text>
+             </View>
+            
+               <View style={{flexDirection:'row'}}>
               <Text
-                style={{ marginBottom: 5, fontSize: 16, fontWeight: "600" }}
+                style={{  fontSize: 18,  color: 'gray',fontWeight: "300" }}
               >
-                Vaccination : {userInfo.vaccination}
+                Vaccination : 
               </Text>
+              <Text style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.vaccination} </Text>
+              
+              </View>
+               <View style={{flexDirection:'row'}}>
               <Text
-                style={{ marginBottom: 5, fontSize: 16, fontWeight: "600" }}
+                style={{  fontSize: 18,  color: 'gray',fontWeight: "300" }}
               >
-                Centre de vaccination : {userInfo.centre_vacc}
+                Type du vaccin : 
               </Text>
+              <Text style={{  fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.type_vaccin} </Text>
+              </View>
+               <View style={{flexDirection:'row'}}>
               <Text
-                style={{ marginBottom: 5, fontSize: 16, fontWeight: "600" }}
+                style={{  fontSize: 18,  color: 'gray',fontWeight: "300" }}
               >
-                Date de la 1ere dose: {userInfo.date_1dose}
+                Date dose 1 : 
               </Text>
+              <Text style={{  fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.date_1dose} </Text>
+              </View>
+              <View style={{flexDirection:'row'}}>
               <Text
-                style={{ marginBottom: 5, fontSize: 16, fontWeight: "600" }}
+                style={{ fontSize: 18,  color: 'gray',fontWeight: "300" }}
               >
-                Date de la 2eme dose: {userInfo.date_2dose}
+                Date dose 2 : 
               </Text>
+              <Text style={{  fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.date_2dose} </Text>
+              </View>
+               <View style={{flexDirection:'row'}}>
               <Text
-                style={{ marginBottom: 5, fontSize: 16, fontWeight: "600" }}
+                style={{ fontSize: 18,  color: 'gray',fontWeight: "300" }}
               >
-                Type du vaccin : {userInfo.type_vaccin}
+                Centre de vaccination : 
               </Text>
+              <Text style={{  fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.centre_vacc} </Text>
+              </View>
+              
             </View>
           </Backdrop>
         </ScrollView>
