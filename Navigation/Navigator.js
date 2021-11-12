@@ -75,6 +75,20 @@ const GoBackFunction = (props) => {
   );
 };
 
+const GoBackTypeVaccin = (props) => {
+  const goBack = () => {
+    props.navigation.navigate("TypeVaccin");
+  };
+  return (
+    <TouchableOpacity
+      style={{ marginLeft: 10, marginTop: 2 }}
+      onPress={() => goBack()}
+    >
+      <AntDesign name="arrowleft" size={30} color="black" />
+    </TouchableOpacity>
+  );
+};
+
 const getHeaderTitle = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "Feed";
 
@@ -132,7 +146,7 @@ function VaccinType({ navigation }) {
       <Stack.Screen
         options={{
           headerTitle: "Sinovac",
-          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+          headerLeft: () => <GoBackTypeVaccin navigation={navigation} />,
         }}
         name="Sinovac"
         component={Sinovac}
@@ -140,15 +154,15 @@ function VaccinType({ navigation }) {
       <Stack.Screen
         options={{
           headerTitle: "Spoutnik",
-          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+          headerLeft: () => <GoBackTypeVaccin navigation={navigation} />,
         }}
         name="Spoutnik"
         component={Spoutnik}
       />
       <Stack.Screen
         options={{
-          headerTitle: "Jandj",
-          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+          headerTitle: "Jonhson & Jonhson",
+          headerLeft: () => <GoBackTypeVaccin navigation={navigation} />,
         }}
         name="Jandj"
         component={Jandj}
@@ -156,7 +170,7 @@ function VaccinType({ navigation }) {
       <Stack.Screen
         options={{
           headerTitle: "Astrazeneca",
-          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+          headerLeft: () => <GoBackTypeVaccin navigation={navigation} />,
         }}
         name="Astrazeneca"
         component={Astrazeneca}

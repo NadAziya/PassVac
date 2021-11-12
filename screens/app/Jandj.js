@@ -10,5 +10,4 @@ import {
 const Jandj = () => {
   return <View></View>;
 };
-
 export default Jandj;
