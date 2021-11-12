@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
-import React from "react";
-import { TouchableOpacity, View, Image } from "react-native";
+import React, { useContext } from "react";
+import { TouchableOpacity, View, Image, Button } from "react-native";
 import {
   NavigationContainer,
   getFocusedRouteNameFromRoute,
@@ -26,6 +26,13 @@ import Colors from "../constants/colors/Colors";
 import AvantScan from "../screens/app/AvantScan";
 import CentreVac from "../screens/app/CentreVac";
 import Vaccin from "../screens/app/VaccinType";
+import Logout from "../screens/app/Logout";
+
+import firebase from "firebase";
+import "@firebase/auth";
+
+import AuthContext from "../auth/context";
+import AuthStorage from "../auth/storage";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -174,6 +181,14 @@ function Scann() {
   );
 }
 
+function Deconnexion({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="TypeVaccin">
+      <Stack.Screen name="deconnexion" component={Logout} />
+    </Stack.Navigator>
+  );
+}
+
 function Navigator() {
   return (
     <Tab.Navigator
@@ -234,6 +249,9 @@ const HomeScreenStack = ({ navigation }) => {
 };
 
 const HomeNavigation = () => {
+  const { user, setUser } = useContext(AuthContext).user;
+  const { info, setInfo } = useContext(AuthContext).info;
+
   return (
     <Drawer.Navigator
       drawerContentOptions={{

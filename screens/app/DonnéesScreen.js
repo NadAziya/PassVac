@@ -13,7 +13,7 @@ import firebase from "firebase";
 import "@firebase/auth";
 
 const Donnee = (props) => {
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [test, setTest] = useState([]);
@@ -38,9 +38,9 @@ const Donnee = (props) => {
   console.log(test, "hhhhhh");
 
   const ouvrirModal = (tes) => {
-   setModalVisible(true)
-    setTes(tes)
-  }
+    setModalVisible(true);
+    setTes(tes);
+  };
 
   useEffect(() => {
     fetchData();
@@ -48,7 +48,7 @@ const Donnee = (props) => {
   return (
     <View>
       <Modal
-      tes={tes}
+        tes={tes}
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -93,14 +93,14 @@ const Donnee = (props) => {
         </View>
       </Modal>
       <ScrollView>
-        {test.map((tes) => (
+        {test.map((tes, index) => (
           <Donnees
-            key={tes.etat}
+            key={index}
             TestResult={tes.etat}
             TestDate={tes.date_test}
             onPress={() => {
-                      ouvrirModal(tes)
-                    }}
+              ouvrirModal(tes);
+            }}
           />
         ))}
       </ScrollView>

@@ -19,8 +19,8 @@ import { Backdrop } from "react-native-backdrop";
 //import { QRCode } from "react-native-custom-qr-codes-expo";
 import QRCode from "react-native-qrcode-svg";
 import DetailPass from "../../components/DetailPass";
-import { MaterialIcons } from '@expo/vector-icons'; 
-import { Entypo } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -96,7 +96,7 @@ const MonPass = ({ props, navigation }) => {
       } else {
         return (
           <QRCode
-             value={[
+            value={[
               {
                 data: `  Invalid ${userInfo.nom} ${userInfo.prenom}`,
                 nom: `${userInfo.nom}`,
@@ -132,7 +132,7 @@ const MonPass = ({ props, navigation }) => {
       ) {
         return (
           <QRCode
-          value={[
+            value={[
               {
                 data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
                 nom: `${userInfo.nom}`,
@@ -140,7 +140,6 @@ const MonPass = ({ props, navigation }) => {
               },
             ]}
             color="red"
-           
             size={200}
           />
         );
@@ -152,12 +151,12 @@ const MonPass = ({ props, navigation }) => {
           return (
             <QRCode
               value={[
-              {
-                data: `valide ${userInfo.nom} ${userInfo.prenom}`,
-                nom: `${userInfo.nom}`,
-                prenom: `${userInfo.prenom}`,
-              },
-            ]}
+                {
+                  data: `valide ${userInfo.nom} ${userInfo.prenom}`,
+                  nom: `${userInfo.nom}`,
+                  prenom: `${userInfo.prenom}`,
+                },
+              ]}
               color="green"
               logo={require("../../assets/img/valide.png")}
               logoSize={50}
@@ -170,13 +169,13 @@ const MonPass = ({ props, navigation }) => {
         ) {
           return (
             <QRCode
-             value={[
-              {
-                data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
-                nom: `${userInfo.nom}`,
-                prenom: `${userInfo.prenom}`,
-              },
-            ]} 
+              value={[
+                {
+                  data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                  nom: `${userInfo.nom}`,
+                  prenom: `${userInfo.prenom}`,
+                },
+              ]}
               color="red"
               logo={require("../../assets/img/valide.png")}
               logoSize={50}
@@ -295,7 +294,7 @@ const MonPass = ({ props, navigation }) => {
               </View>
             </View>
 
-            <Button
+            {/*   <Button
               title="Logout"
               onPress={async () => {
                 await firebase.auth().signOut();
@@ -303,7 +302,7 @@ const MonPass = ({ props, navigation }) => {
                 setUser(false);
                 setInfo(false);
               }}
-            />
+            />*/}
           </View>
           <Backdrop
             visible={visible}
@@ -322,70 +321,113 @@ const MonPass = ({ props, navigation }) => {
             overlayColor="rgba(0,0,0,0.8)"
             backdropStyle={{
               backgroundColor: "#fff",
-           
             }}
           >
             <View
               style={{
-     justifyContent: 'space-around',
-               marginLeft: 10,
+                justifyContent: "space-around",
+                marginLeft: 10,
                 padding: 10,
                 height: 300,
-                marginBottom: 10
+                marginBottom: 10,
               }}
             >
-            <View>
-             <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', }}>
-            <Text   style={{  fontSize: 18,  fontWeight: "600", marginRight: 10, color:'green' }}>Preuve de vaccination</Text>
-            {userInfo.vaccination === 'vacciné(e)' ?<MaterialIcons name="verified" size={40} color="green"/> : <Entypo name="circle-with-cross" size={40} color="red" />}
-             </View>
-               <Text numberOfLines={1} style={{ textAlign: "center" ,color: '#C0C0C0',fontWeight:'300' }}>
-                   _________________________________
+              <View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      fontWeight: "600",
+                      marginRight: 10,
+                      color: "green",
+                    }}
+                  >
+                    Preuve de vaccination
+                  </Text>
+                  {userInfo.vaccination === "vacciné(e)" ? (
+                    <MaterialIcons name="verified" size={40} color="green" />
+                  ) : (
+                    <Entypo name="circle-with-cross" size={40} color="red" />
+                  )}
+                </View>
+                <Text
+                  numberOfLines={1}
+                  style={{
+                    textAlign: "center",
+                    color: "#C0C0C0",
+                    fontWeight: "300",
+                  }}
+                >
+                  _________________________________
                 </Text>
-             </View>
-            
-               <View style={{flexDirection:'row'}}>
-              <Text
-                style={{  fontSize: 18,  color: 'gray',fontWeight: "300" }}
-              >
-                Vaccination : 
-              </Text>
-              <Text style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.vaccination} </Text>
-              
               </View>
-               <View style={{flexDirection:'row'}}>
-              <Text
-                style={{  fontSize: 18,  color: 'gray',fontWeight: "300" }}
-              >
-                Type du vaccin : 
-              </Text>
-              <Text style={{  fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.type_vaccin} </Text>
+
+              <View style={{ flexDirection: "row" }}>
+                <Text
+                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
+                >
+                  Vaccination :
+                </Text>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
+                >
+                  {userInfo.vaccination}{" "}
+                </Text>
               </View>
-               <View style={{flexDirection:'row'}}>
-              <Text
-                style={{  fontSize: 18,  color: 'gray',fontWeight: "300" }}
-              >
-                Date dose 1 : 
-              </Text>
-              <Text style={{  fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.date_1dose} </Text>
+              <View style={{ flexDirection: "row" }}>
+                <Text
+                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
+                >
+                  Type du vaccin :
+                </Text>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
+                >
+                  {userInfo.type_vaccin}{" "}
+                </Text>
               </View>
-              <View style={{flexDirection:'row'}}>
-              <Text
-                style={{ fontSize: 18,  color: 'gray',fontWeight: "300" }}
-              >
-                Date dose 2 : 
-              </Text>
-              <Text style={{  fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.date_2dose} </Text>
+              <View style={{ flexDirection: "row" }}>
+                <Text
+                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
+                >
+                  Date dose 1 :
+                </Text>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
+                >
+                  {userInfo.date_1dose}{" "}
+                </Text>
               </View>
-               <View style={{flexDirection:'row'}}>
-              <Text
-                style={{ fontSize: 18,  color: 'gray',fontWeight: "300" }}
-              >
-                Centre de vaccination : 
-              </Text>
-              <Text style={{  fontSize: 18, fontWeight: "500", marginLeft: 10 }}>{userInfo.centre_vacc} </Text>
+              <View style={{ flexDirection: "row" }}>
+                <Text
+                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
+                >
+                  Date dose 2 :
+                </Text>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
+                >
+                  {userInfo.date_2dose}{" "}
+                </Text>
               </View>
-              
+              <View style={{ flexDirection: "row" }}>
+                <Text
+                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
+                >
+                  Centre de vaccination :
+                </Text>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
+                >
+                  {userInfo.centre_vacc}{" "}
+                </Text>
+              </View>
             </View>
           </Backdrop>
         </ScrollView>

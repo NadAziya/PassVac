@@ -43,7 +43,7 @@ const Accueil = (props, navigation) => {
       const profile = db
         .collection("users")
         .doc(currentUser.phoneNumber)
-        .get() 
+        .get()
         .then((snapshot) => {
           if (snapshot.exists) {
             setUserInfo(snapshot.data());
@@ -73,7 +73,7 @@ const Accueil = (props, navigation) => {
       valide"
           />
         );
-      } else {  
+      } else {
         return (
           <MaSante
             style={{ backgroundColor: "red" }}
@@ -86,7 +86,7 @@ const Accueil = (props, navigation) => {
       if (
         (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
         userInfo.date_2dose == "00-00-0000"
-      ) { 
+      ) {
         return (
           <MaSante
             style={{ backgroundColor: "orange" }}
@@ -101,8 +101,8 @@ const Accueil = (props, navigation) => {
         return (
           <MaSante
             style={{ backgroundColor: "red" }}
-           children="Isolemment recommandé, vacciné(e) d'une seule dose,"
-              text=" Je m'isole immédiatement après 
+            children="Isolemment recommandé, vacciné(e) d'une seule dose,"
+            text=" Je m'isole immédiatement après 
         avoir reçu mon résultat. "
           />
         );
@@ -128,7 +128,7 @@ const Accueil = (props, navigation) => {
               children="Isolemment recommandé, vacciné(e) totalement,"
               text=" Je m'isole immédiatement après 
         avoir reçu mon résultat. "
-            /> 
+            />
           );
         }
       }
@@ -220,7 +220,7 @@ const Accueil = (props, navigation) => {
               </View>
             </Card>
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={{ justifyContent: "center", alignItems: "center" }}
             onPress={() => {
               props.navigation.navigate("Vaccin");
