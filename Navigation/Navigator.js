@@ -27,6 +27,10 @@ import AvantScan from "../screens/app/AvantScan";
 import CentreVac from "../screens/app/CentreVac";
 import Vaccin from "../screens/app/VaccinType";
 import Logout from "../screens/app/Logout";
+import Sinovac from "../screens/app/Sinovac";
+import Astrazeneca from "../screens/app/Astrazeneca";
+import Spoutnik from "../screens/app/Spoutnik";
+import Jandj from "../screens/app/Jandj";
 
 import firebase from "firebase";
 import "@firebase/auth";
@@ -124,6 +128,38 @@ function VaccinType({ navigation }) {
         }}
         name="TypeVaccin"
         component={Vaccin}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "Sinovac",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="Sinovac"
+        component={Sinovac}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "Spoutnik",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="Spoutnik"
+        component={Spoutnik}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "Jandj",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="Jandj"
+        component={Jandj}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "Astrazeneca",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="Astrazeneca"
+        component={Astrazeneca}
       />
     </Stack.Navigator>
   );
