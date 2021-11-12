@@ -14,7 +14,7 @@ const DetailPass = (props) => {
             width: 75,
             height: 75,
             borderRadius: 40,
-            borderWidth: 3,
+            borderWidth: 2,
             borderColor: "blue",
           }}
           source={require("../assets/img/vaccin.png")}
@@ -32,9 +32,9 @@ const DetailPass = (props) => {
         </Text>
         <Text
           style={{
-            fontWeight: "500",
+            fontWeight: "400",
             fontSize: 15,
-            color: "#C0C0C0",
+            color: "#9e9e9",
           }}
         >
           {props.dose}

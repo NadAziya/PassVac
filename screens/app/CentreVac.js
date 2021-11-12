@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   ScrollView,
+  StyleSheet,
   RefreshControl,
 } from "react-native";
 import firebase from "firebase";
@@ -52,7 +53,7 @@ const CentreVac = (props) => {
   return (
     <View style={{ backgroundColor: "#e3e6f4", height: "100%" }}>
       <SearchBar
-        placeholder="saisir le centre ou la wilaya que vous recherchez.."
+        placeholder="rechercher le centre ou la wilaya.."
         onChange={(e) => {
           setSearchTerm(e);
         }}
@@ -111,7 +112,7 @@ const CentreVac = (props) => {
                     <MaterialCommunityIcons
                       name="hospital-marker"
                       size={35}
-                      color={Colors.secondary}
+                      color="blue"
                     />
                     {cent.nomCentre}
                   </Text>
@@ -147,11 +148,7 @@ const CentreVac = (props) => {
                     justifyContent: "center",
                   }}
                 >
-                  <AntDesign
-                    name="rightcircle"
-                    size={35}
-                    color={Colors.secondary}
-                  />
+                  <AntDesign name="rightcircle" size={35} color="blue" />
                 </TouchableOpacity>
               </Card>
             ))}
@@ -198,14 +195,14 @@ const CentreVac = (props) => {
                       fontSize: 20,
                       fontWeight: "600",
                       marginRight: 50,
-                      color: Colors.secondary,
+                      color: "blue",
                     }}
                   >
                     {" "}
                     <MaterialCommunityIcons
                       name="hospital-marker"
                       size={35}
-                      color={Colors.secondary}
+                      color="blue"
                     />
                     {cent.nomCentre}
                   </Text>
@@ -214,7 +211,7 @@ const CentreVac = (props) => {
                   numberOfLines={1}
                   style={{
                     textAlign: "center",
-                    color: "#C0C0C0",
+                    color: "#9e9e9e",
                     fontWeight: "300",
                   }}
                 >
@@ -222,89 +219,24 @@ const CentreVac = (props) => {
                 </Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Wilaya :
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "500",
-                    marginLeft: 10,
-                    color: "black",
-                  }}
-                >
-                  {cent.wilaya}
-                </Text>
+                <Text style={styles.text}>Wilaya :</Text>
+                <Text style={styles.textInfo}>{cent.wilaya}</Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  tel :
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "500",
-                    marginLeft: 10,
-                    color: "black",
-                  }}
-                >
-                  0{cent.tel}
-                </Text>
+                <Text style={styles.text}>tel :</Text>
+                <Text style={styles.textInfo}>0{cent.tel}</Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Numéro d'agrement :
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "500",
-                    marginLeft: 10,
-                    color: "black",
-                  }}
-                >
-                  {cent.numAgrement}
-                </Text>
+                <Text style={styles.text}>Numéro d'agrement :</Text>
+                <Text style={styles.textInfo}>{cent.numAgrement}</Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Adresse :
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "500",
-                    marginLeft: 10,
-                    color: "black",
-                  }}
-                >
-                  {cent.adresse}
-                </Text>
+                <Text style={styles.text}>Adresse :</Text>
+                <Text style={styles.textInfo}>{cent.adresse}</Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Code Postal :
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "500",
-                    marginLeft: 10,
-                    color: "black",
-                  }}
-                >
-                  {cent.codePostal}
-                </Text>
+                <Text style={styles.text}>Code Postal :</Text>
+                <Text style={styles.textInfo}>{cent.codePostal}</Text>
               </View>
             </View>
           </Backdrop>
@@ -315,3 +247,12 @@ const CentreVac = (props) => {
 };
 
 export default CentreVac;
+const styles = StyleSheet.create({
+  text: { fontSize: 18, color: "gray", fontWeight: "300" },
+  textInfo: {
+    fontSize: 18,
+    fontWeight: "500",
+    marginLeft: 10,
+    color: "black",
+  },
+});

@@ -223,23 +223,17 @@ const MonPass = ({ props, navigation }) => {
               height: "30%",
             }}
           >
-            <View style={{ alignItems: "center" }}>
-              {renderElement()}
-
-              <Text style={{ color: "#C0C0C0" }}>h251gdqs6gf4th94qs68f4</Text>
-            </View>
+            <View style={{ alignItems: "center" }}>{renderElement()}</View>
             <View style={{ height: "45%", alignItems: "center" }}>
               <View
                 style={{
-                  backgroundColor: Colors.third,
+                  backgroundColor: "blue",
                   borderRadius: 60,
                   borderColor: "transparent",
                   height: 40,
                   width: 350,
-
                   justifyContent: "center",
-
-                  marginTop: 20,
+                  marginTop: 30,
                 }}
               >
                 <Text
@@ -260,12 +254,12 @@ const MonPass = ({ props, navigation }) => {
                 }}
               >
                 <Image
-                  style={{ width: 90, height: 90, borderRadius: 45 }}
+                  style={{ width: 100, height: 100, borderRadius: 50 }}
                   source={{ uri: userInfo.imageUri }}
                 />
               </View>
               <View>
-                <Text style={{ color: "gray", fontSize: 16 }}>Nom :</Text>
+                <Text style={{ color: "#9e9e9e", fontSize: 15 }}>Nom :</Text>
                 <Text
                   style={{
                     fontWeight: "600",
@@ -275,7 +269,7 @@ const MonPass = ({ props, navigation }) => {
                 >
                   {userInfo.nom}
                 </Text>
-                <Text style={{ color: "gray", fontSize: 16 }}>Prénom :</Text>
+                <Text style={{ color: "#9e9e9e", fontSize: 15 }}>Prénom :</Text>
                 <Text
                   style={{
                     fontWeight: "600",
@@ -285,7 +279,7 @@ const MonPass = ({ props, navigation }) => {
                 >
                   {userInfo.prenom}
                 </Text>
-                <Text style={{ color: "gray", fontSize: 16 }}>
+                <Text style={{ color: "#9e9e9e", fontSize: 15 }}>
                   Date de naissance :
                 </Text>
                 <Text style={{ fontWeight: "600", fontSize: 18 }}>
@@ -369,64 +363,24 @@ const MonPass = ({ props, navigation }) => {
               </View>
 
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Vaccination :
-                </Text>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
-                >
-                  {userInfo.vaccination}{" "}
-                </Text>
+                <Text style={styles.text}>Vaccination :</Text>
+                <Text style={styles.textInfo}>{userInfo.vaccination} </Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Type du vaccin :
-                </Text>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
-                >
-                  {userInfo.type_vaccin}{" "}
-                </Text>
+                <Text style={styles.text}>Type du vaccin :</Text>
+                <Text style={styles.textInfo}>{userInfo.type_vaccin} </Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Date dose 1 :
-                </Text>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
-                >
-                  {userInfo.date_1dose}{" "}
-                </Text>
+                <Text style={styles.text}>Date dose 1 :</Text>
+                <Text style={styles.textInfo}>{userInfo.date_1dose} </Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Date dose 2 :
-                </Text>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
-                >
-                  {userInfo.date_2dose}{" "}
-                </Text>
+                <Text style={styles.text}>Date dose 2 :</Text>
+                <Text style={styles.textInfo}>{userInfo.date_2dose}</Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{ fontSize: 18, color: "gray", fontWeight: "300" }}
-                >
-                  Centre de vaccination :
-                </Text>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "500", marginLeft: 10 }}
-                >
-                  {userInfo.centre_vacc}{" "}
-                </Text>
+                <Text style={styles.text}>Centre de vaccination :</Text>
+                <Text style={styles.textInfo}>{userInfo.centre_vacc}</Text>
               </View>
             </View>
           </Backdrop>
@@ -442,5 +396,15 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: "white",
     height: "100%",
+  },
+  text: {
+    fontSize: 18,
+    color: "gray",
+    fontWeight: "300",
+  },
+  textInfo: {
+    fontSize: 18,
+    fontWeight: "500",
+    marginLeft: 10,
   },
 });

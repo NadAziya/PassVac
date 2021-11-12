@@ -209,7 +209,6 @@ const Accueil = (props, navigation) => {
                     style={{
                       fontSize: 18,
                       fontWeight: "bold",
-
                       marginBottom: 5,
                     }}
                   >
@@ -227,34 +226,16 @@ const Accueil = (props, navigation) => {
             }}
           >
             <Card style={styles.card}>
-              <View
-                style={{
-                  height: 75,
-                  width: 75,
-                  borderRadius: 40,
-                  backgroundColor: Colors.third,
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
+              <View style={styles.viewIcon}>
                 <Fontisto name="injection-syringe" size={40} color="white" />
               </View>
               <View style={{ marginLeft: 10, flex: 3 }}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "bold",
-
-                    marginBottom: 5,
-                  }}
-                >
+                <Text style={styles.titleCard}>
                   Quels sont les vaccins disponible?
                 </Text>
                 <Text>
-                  afficher les informations sur les différents vaccin disponible
-                  en Algérie
+                  afficher les informations sur les vaccins disponibles en
+                  Algérie.
                 </Text>
               </View>
             </Card>
@@ -276,31 +257,14 @@ const Accueil = (props, navigation) => {
             }}
           >
             <Card style={styles.card}>
-              <View
-                style={{
-                  height: 75,
-                  width: 75,
-                  borderRadius: 40,
-                  backgroundColor: Colors.third,
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <View style={styles.viewIcon}>
                 <MaterialIcons name="history" size={40} color="white" />
               </View>
               <View style={{ marginLeft: 10, flex: 3 }}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "bold",
-
-                    marginBottom: 5,
-                  }}
-                >
+                <Text style={styles.titleCard}>
                   Voir l'historique de mes tests PCR
                 </Text>
-                <Text>afficher les données relative a mes tests.</Text>
+                <Text>afficher les données relative 0 mes tests.</Text>
               </View>
             </Card>
           </TouchableOpacity>
@@ -326,5 +290,15 @@ const styles = StyleSheet.create({
     height: 105,
     width: "96%",
     marginBottom: 18,
+  },
+  titleCard: { fontSize: 18, fontWeight: "bold", marginBottom: 5 },
+  viewIcon: {
+    height: 75,
+    width: 75,
+    borderRadius: 40,
+    backgroundColor: Colors.third,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -37,7 +37,7 @@ const Jandj = () => {
           Administration:
         </Text>
         <Text style={{ fontSize: 16, paddingLeft: 10, paddingBottom: 5 }}>
-          - La posologie recommandée est d'une sele dose (0.5ml) administrées
+          - La posologie recommandée est d'une seule dose (0.5ml) administrées
           par voie intramusculaire dans le deltoïde.
         </Text>
       </View>

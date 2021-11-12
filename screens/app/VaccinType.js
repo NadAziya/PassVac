@@ -84,7 +84,7 @@ const Vaccin = (props) => {
               <View style={styles.view}>
                 <Fontisto name="injection-syringe" size={35} color="blue" />
               </View>
-              <Text style={styles.text}>Spoutnik V</Text>
+              <Text style={styles.text}>Sputnik V</Text>
             </TouchableOpacity>
           </Card>
         </View>
@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#caf0f8",
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
   },
   card: {
     margin: 5,
-    height: 140,
+    height: 150,
     flexDirection: "row",
     width: "35%",
     justifyContent: "space-between",
