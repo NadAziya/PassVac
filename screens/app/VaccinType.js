@@ -22,7 +22,7 @@ const Vaccin = (props) => {
           padding: 20,
         }}
       >
-        Cliquez sur l'un des vaccins pour afficher ces informations
+        Vaccins disponible en Algérie, cliquez pour en savoir plus.
       </Text>
       <View style={{ flexDirection: "column", marginTop: 30 }}>
         <View
