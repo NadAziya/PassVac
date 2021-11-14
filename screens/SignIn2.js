@@ -77,7 +77,7 @@ export default function SignInCostum(props, navigation) {
 
   return (
     <View style={styles.container}>
-      <View style={{ height: "30%" }}>
+      <View style={{ height: "35%" }}>
         <Header onImageTaken={imageTakenHandler} id={currentUser.phoneNumber} />
       </View>
 

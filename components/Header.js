@@ -87,6 +87,22 @@ export default function Header(props) {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
+        <TouchableOpacity
+          onPress={takeImageHandler}
+          style={{
+            backgroundColor: Colors.third,
+            width: 150,
+            height: 30,
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 5,
+          }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>
+            Ajouter une photo
+          </Text>
+        </TouchableOpacity>
+
         {!pickedImage ? (
           <Image
             style={styles.image}
@@ -95,13 +111,9 @@ export default function Header(props) {
         ) : (
           <Image style={styles.image} source={{ uri: pickedImage }} />
         )}
-
-        <TouchableOpacity
-          onPress={takeImageHandler}
-          style={{ position: "absolute", top: 165, left: 210 }}
-        >
-          <Ionicons name="add-circle" size={40} color={Colors.third} />
-        </TouchableOpacity>
+        <Text style={{ color: "red", textAlign: "center" }}>
+          *La photo est obligatoire pour confirmer votre identité
+        </Text>
 
         {/*<Ionicons.Button
           name="add-circle"

@@ -26,6 +26,7 @@ const CentreVac = (props) => {
   const [visible, setVisible] = useState(false);
   const [cent, setCent] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchFilter, setSearchFilter] = useState([]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -33,9 +34,28 @@ const CentreVac = (props) => {
     const db = firebase.firestore();
     const data = await db.collection("centre").get();
     setCentre(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setSearchFilter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     setLoading(false);
     setRefreshing(false);
   });
+
+  const searchFilteritem = (text) => {
+    if (text) {
+      const newData = centre.filter((cent) => {
+        const itemData = cent.nomCentre
+          ? cent.nomCentre.toUpperCase()
+          : "".toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setSearchFilter(newData);
+      setSearchTerm(text);
+    } else {
+      setSearchFilter(centre);
+      setSearchTerm(text);
+    }
+  };
+
   const handleOpen = (cent) => {
     setVisible(true);
     setCent(cent);
@@ -54,8 +74,9 @@ const CentreVac = (props) => {
     <View style={{ backgroundColor: "#e3e6f4", height: "100%" }}>
       <SearchBar
         placeholder="rechercher le centre ou la wilaya.."
-        onChange={(e) => {
-          setSearchTerm(e);
+        value={searchTerm}
+        onChangeText={(text) => {
+          searchFilteritem(text);
         }}
       />
       {loading ? (
@@ -70,88 +91,77 @@ const CentreVac = (props) => {
             <RefreshControl refreshing={refreshing} onRefresh={fetchData} />
           }
         >
-          {centre
-            .filter((cent) => {
-              if (searchTerm == "") {
-                return cent;
-              } else if (
-                cent.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                cent.prenom.toLowerCase().includes(searchTerm.toLowerCase())
-              ) {
-                return cent;
-              }
-            })
-            .map((cent, index) => (
-              <Card
-                key={index}
+          {searchFilter.map((cent, index) => (
+            <Card
+              key={index}
+              style={{
+                margin: 5,
+                height: 120,
+                flexDirection: "row",
+                width: "95%",
+                justifyContent: "space-between",
+                padding: 10,
+                backgroundColor: "white",
+              }}
+            >
+              <View
                 style={{
-                  margin: 5,
-                  height: 120,
-                  flexDirection: "row",
-                  width: "95%",
-                  justifyContent: "space-between",
-                  padding: 10,
-                  backgroundColor: "white",
+                  flexDirection: "column",
+
+                  justifyContent: "center",
                 }}
               >
-                <View
+                <Text
                   style={{
-                    flexDirection: "column",
-
-                    justifyContent: "center",
+                    fontWeight: "600",
+                    fontSize: 20,
+                    color: "black",
+                    marginBottom: 5,
                   }}
                 >
-                  <Text
-                    style={{
-                      fontWeight: "600",
-                      fontSize: 20,
-                      color: "black",
-                      marginBottom: 5,
-                    }}
-                  >
-                    <MaterialCommunityIcons
-                      name="hospital-marker"
-                      size={35}
-                      color="blue"
+                  <MaterialCommunityIcons
+                    name="hospital-marker"
+                    size={35}
+                    color="blue"
+                  />
+                  {cent.nomCentre}
+                </Text>
+
+                <Text
+                  style={{
+                    fontWeight: "400",
+                    fontSize: 16,
+                    color: "black",
+                  }}
+                >
+                  <View style={{ marginRight: 10 }}>
+                    <FontAwesome
+                      name="location-arrow"
+                      size={20}
+                      color="black"
                     />
-                    {cent.nomCentre}
-                  </Text>
-
-                  <Text
-                    style={{
-                      fontWeight: "400",
-                      fontSize: 16,
-                      color: "black",
-                    }}
-                  >
-                    <View style={{ marginRight: 10 }}>
-                      <FontAwesome
-                        name="location-arrow"
-                        size={20}
-                        color="black"
-                      />
-                    </View>
-                    {cent.wilaya}
-                  </Text>
-                  <Text
-                    style={{ fontWeight: "400", fontSize: 16, color: "black" }}
-                  >
-                    <View style={{ marginRight: 10 }}>
-                      <Foundation name="telephone" size={20} color="black" />
-                    </View>
-                    0{cent.tel}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  onPress={() => handleOpen(cent)}
-                  style={{
-                    justifyContent: "center",
-                  }}
+                  </View>
+                  {cent.wilaya}
+                </Text>
+                <Text
+                  style={{ fontWeight: "400", fontSize: 16, color: "black" }}
                 >
-                  <AntDesign name="rightcircle" size={35} color="blue" />
-                </TouchableOpacity>
-              </Card>
-            ))}
+                  <View style={{ marginRight: 10 }}>
+                    <Foundation name="telephone" size={20} color="black" />
+                  </View>
+                  0{cent.tel}
+                </Text>
+              </View>
+              <TouchableOpacity
+                onPress={() => handleOpen(cent)}
+                style={{
+                  justifyContent: "center",
+                }}
+              >
+                <AntDesign name="rightcircle" size={35} color="blue" />
+              </TouchableOpacity>
+            </Card>
+          ))}
 
           <Backdrop
             cent={cent}

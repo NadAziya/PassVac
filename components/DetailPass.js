@@ -34,7 +34,7 @@ const DetailPass = (props) => {
           style={{
             fontWeight: "400",
             fontSize: 15,
-            color: "#9e9e9",
+            color: "#9e9e9e",
           }}
         >
           {props.dose}

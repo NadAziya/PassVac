@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Accueil from "../screens/app/Accueil";
@@ -31,6 +32,8 @@ import Sinovac from "../screens/app/Sinovac";
 import Astrazeneca from "../screens/app/Astrazeneca";
 import Spoutnik from "../screens/app/Spoutnik";
 import Jandj from "../screens/app/Jandj";
+
+import CustomDrawer from "../components/CustomDrawer";
 
 import firebase from "firebase";
 import "@firebase/auth";
@@ -303,35 +306,60 @@ const HomeNavigation = () => {
   const { info, setInfo } = useContext(AuthContext).info;
 
   return (
-    <Drawer.Navigator
-      drawerContentOptions={{
-        activeTintColor: "#e91e63",
-        itemStyle: { marginVertical: 5 },
-      }}
-    >
+    <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen
         name="HomeScreenStack"
-        options={{ drawerLabel: "Accueil", headerShown: false }}
+        options={{
+          drawerLabel: "Accueil",
+          headerShown: false,
+          drawerIcon: ({ color }) => (
+            <Ionicons name="home-outline" size={22} color={color} />
+          ),
+        }}
         component={HomeScreenStack}
       />
       <Drawer.Screen
         name="Setting"
-        options={{ drawerLabel: "MonPass", headerShown: false }}
+        options={{
+          drawerLabel: "Mon Pass",
+          headerShown: false,
+          drawerIcon: ({ color }) => (
+            <Ionicons name="qr-code" size={22} color={color} />
+          ),
+        }}
         component={Setting}
       />
       <Drawer.Screen
         name="CentreVac"
-        options={{ drawerLabel: "Centre de Vaccination", headerShown: false }}
+        options={{
+          drawerLabel: "Centre de Vaccination",
+          headerShown: false,
+          drawerIcon: ({ color }) => (
+            <FontAwesome5 name="hospital-symbol" size={22} color={color} />
+          ),
+        }}
         component={CentreVaccination}
       />
       <Drawer.Screen
         name="Donnees"
-        options={{ drawerLabel: "Mon historique", headerShown: false }}
+        options={{
+          drawerLabel: "Mon historique",
+          headerShown: false,
+          drawerIcon: ({ color }) => (
+            <FontAwesome5 name="history" size={22} color={color} />
+          ),
+        }}
         component={Historique}
       />
       <Drawer.Screen
         name="Vaccin"
-        options={{ drawerLabel: "Les types des vaccins", headerShown: false }}
+        options={{
+          drawerLabel: "Les types des vaccins",
+          headerShown: false,
+          drawerIcon: ({ color }) => (
+            <FontAwesome5 name="syringe" size={22} color={color} />
+          ),
+        }}
         component={VaccinType}
       />
     </Drawer.Navigator>
