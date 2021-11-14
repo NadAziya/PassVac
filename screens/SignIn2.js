@@ -11,7 +11,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import DatePicker from "@dietime/react-native-date-picker";
+import DatePicker from "react-native-datepicker";
 
 import { useDispatch } from "react-redux";
 
@@ -150,6 +150,52 @@ export default function SignInCostum(props, navigation) {
                   borderColor: "transparent",
                   borderRadius: 14,
                 }}
+              />
+              {/* <DatePicker
+                style={{ width: 200 }}
+                date={dateNes}
+                mode="date"
+                placeholder="select date"
+                format="YYYY-MM-DD"
+                minDate="2016-05-01"
+                maxDate="2016-06-01"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0,
+                  },
+                  dateInput: {
+                    marginLeft: 36,
+                  },
+                }}
+                onDateChange={(date) => setDateNes(date)}
+              /> */}
+              <DatePicker
+                style={{ width: 200 }}
+                date={dateNes}
+                mode="date"
+                placeholder="select date"
+                format="YYYY-MM-DD"
+                minDate="2016-05-01"
+                maxDate="2016-06-01"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0,
+                  },
+                  dateInput: {
+                    marginLeft: 36,
+                  },
+                }}
+                onDateChange={(date) => setDateNes(date)}
               />
             </View>
           </View>

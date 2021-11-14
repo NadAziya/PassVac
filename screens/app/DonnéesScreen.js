@@ -73,7 +73,7 @@ const Donnee = (props) => {
               Centre de Test :{" "}
             </Text>
             <Text style={{ marginBottom: 25, color: "grey", fontSize: 16 }}>
-              Laboratoire Zerrar
+              {tes.centre_test}
             </Text>
 
             <Text style={{ fontWeight: "600", fontSize: 19, marginBottom: 4 }}>

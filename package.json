@@ -37,6 +37,7 @@
     "react-native-check-box": "^2.1.7",
     "react-native-custom-qr-codes-expo": "^2.2.0",
     "react-native-datefield": "^0.3.5",
+    "react-native-datepicker": "^1.7.2",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-image-avatars": "^1.1.6",

@@ -344,7 +344,7 @@ const MonPass = ({ props, navigation }) => {
                   >
                     Preuve de vaccination
                   </Text>
-                  {userInfo.vaccination === "vacciné(e)" ? (
+                  {userInfo.vaccination === "Vacciné(e)" ? (
                     <MaterialIcons name="verified" size={40} color="green" />
                   ) : (
                     <Entypo name="circle-with-cross" size={40} color="red" />

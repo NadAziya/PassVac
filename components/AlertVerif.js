@@ -15,7 +15,8 @@ const AlertVerif = (props) => {
         flexDirection: "column",
         justifyContent: "space-evenly",
         marginBottom: 50,
-        backgroundColor: "#58CA4E",
+        //backgroundColor: "#58CA4E",
+        backgroundColor: "blue",
       }}
     >
       <View
@@ -31,16 +32,11 @@ const AlertVerif = (props) => {
             fontSize: 17,
             fontWeight: "500",
             color: "white",
-            paddingRight: 150
           }}
         >
           {props.text}
         </Text>
-     </View>
-
-    
-
-    
+      </View>
     </View>
   );
 };
