@@ -46,7 +46,7 @@ export default function Header(props) {
     }
     const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
-      aspect: [30, 23],
+      aspect: [90, 60],
       quality: 0.5,
     });
 
@@ -87,21 +87,16 @@ export default function Header(props) {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <TouchableOpacity
-          onPress={takeImageHandler}
+        <Text
           style={{
-            backgroundColor: Colors.third,
-            width: 150,
-            height: 30,
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: 5,
+            color: "red",
+            textAlign: "center",
+            fontSize: 11,
+            marginBottom: 10,
           }}
         >
-          <Text style={{ color: "white", textAlign: "center" }}>
-            Ajouter une photo
-          </Text>
-        </TouchableOpacity>
+          *La photo est obligatoire pour confirmer votre identité
+        </Text>
 
         {!pickedImage ? (
           <Image
@@ -111,9 +106,23 @@ export default function Header(props) {
         ) : (
           <Image style={styles.image} source={{ uri: pickedImage }} />
         )}
-        <Text style={{ color: "red", textAlign: "center" }}>
-          *La photo est obligatoire pour confirmer votre identité
-        </Text>
+
+        <TouchableOpacity
+          onPress={takeImageHandler}
+          style={{
+            backgroundColor: Colors.third,
+            width: 150,
+            height: 30,
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 5,
+            borderRadius: 5,
+          }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>
+            Ajouter une photo
+          </Text>
+        </TouchableOpacity>
 
         {/*<Ionicons.Button
           name="add-circle"

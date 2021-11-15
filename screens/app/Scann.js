@@ -25,7 +25,7 @@ export default function Accueil() {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ data}) => {
+  const handleBarCodeScanned = ({ data }) => {
     setScanned(true);
     setText(data);
     console.log(data);
@@ -38,6 +38,18 @@ export default function Accueil() {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
+  const Verify = () => {
+    if (text == "Vacciné(e) Négatif(ve)") {
+      return (
+        <AlertVerif text="GoPass valide" style={{ backgroundColor: "green" }} />
+      );
+    } else {
+      return (
+        <AlertVerif text="GoPass invalide" style={{ backgroundColor: "red" }} />
+      );
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -56,7 +68,7 @@ export default function Accueil() {
         )}
       </BarCodeScanner>
 
-      {scanned && <AlertVerif text={text} />}
+      {scanned && Verify()}
       {scanned && (
         <Button
           title={"Tapez pour scanner encore"}

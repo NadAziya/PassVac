@@ -79,12 +79,12 @@ const MonPass = ({ props, navigation }) => {
 
   const renderElement = () => {
     if (userInfo.vaccination == "Non vacciné(e)") {
-      if (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") {
+      if (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") {
         return (
           <QRCode
             value={[
               {
-                data: `   Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                data: "Non vacciné(e) Négatif(ve)",
                 nom: `${userInfo.nom}`,
                 prenom: `${userInfo.prenom}`,
               },
@@ -98,7 +98,7 @@ const MonPass = ({ props, navigation }) => {
           <QRCode
             value={[
               {
-                data: `  Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                data: "Non vacciné(e) Positif(ve)",
                 nom: `${userInfo.nom}`,
                 prenom: `${userInfo.prenom}`,
               },
@@ -110,14 +110,14 @@ const MonPass = ({ props, navigation }) => {
       }
     } else {
       if (
-        (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
+        (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") &&
         userInfo.date_2dose == "00-00-0000"
       ) {
         return (
           <QRCode
             value={[
               {
-                data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                data: "Vacciné(e) 1dose Négatif(ve)",
                 nom: `${userInfo.nom}`,
                 prenom: `${userInfo.prenom}`,
               },
@@ -134,7 +134,7 @@ const MonPass = ({ props, navigation }) => {
           <QRCode
             value={[
               {
-                data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                data: "Vacciné(e) 1dose Positif(ve)",
                 nom: `${userInfo.nom}`,
                 prenom: `${userInfo.prenom}`,
               },
@@ -145,14 +145,14 @@ const MonPass = ({ props, navigation }) => {
         );
       } else {
         if (
-          (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
+          (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") &&
           userInfo.date_2dose !== "00-00-0000"
         ) {
           return (
             <QRCode
               value={[
                 {
-                  data: `valide ${userInfo.nom} ${userInfo.prenom}`,
+                  data: "Vacciné(e) Négatif(ve)",
                   nom: `${userInfo.nom}`,
                   prenom: `${userInfo.prenom}`,
                 },
@@ -171,7 +171,7 @@ const MonPass = ({ props, navigation }) => {
             <QRCode
               value={[
                 {
-                  data: ` Invalid ${userInfo.nom} ${userInfo.prenom}`,
+                  data: "Vacciné(e) Positif(ve)",
                   nom: `${userInfo.nom}`,
                   prenom: `${userInfo.prenom}`,
                 },

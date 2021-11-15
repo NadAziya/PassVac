@@ -30,7 +30,14 @@ const CustomDrawer = (props) => {
           <DrawerItemList {...props} />
         </View>
       </DrawerContentScrollView>
-      <View style={{ padding: 5, borderTopWidth: 1, borderTopColor: "#ccc" }}>
+      <View
+        style={{
+          padding: 5,
+          borderTopWidth: 1,
+          borderTopColor: "#ccc",
+          marginBottom: 20,
+        }}
+      >
         <TouchableOpacity
           onPress={async () => {
             await firebase.auth().signOut();
@@ -38,7 +45,7 @@ const CustomDrawer = (props) => {
             setUser(false);
             setInfo(false);
           }}
-          style={{ paddingVertical: 15, marginLeft: 10 }}
+          style={{ paddingVertical: 15, marginLeft: 20 }}
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="exit-outline" size={22} />

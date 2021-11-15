@@ -61,13 +61,14 @@ export default function info(props, navigation) {
             <View style={{ marginTop: 15 }}>
               <Text style={styles.title}>Get GoPass and Go ! </Text>
               <Text style={styles.text}>
-                Connect your COVID-19 test result or vaccination records and get
-                back to travel, work and life.
+                Connectez votre résultat de test COVID-19 ou votre preuve de
+                vaccintations et reprenez vos voyages, votre travail et votre
+                vie.
               </Text>
             </View>
           </View>
           <View style={{ height, width }}>
-            <Text style={styles.textWelcome}>Welcome IN GoPass !</Text>
+            <Text style={styles.textWelcome}>Bienvenue sur GoPass !</Text>
 
             <View style={styles.container}>
               <View style={styles.storeContainer}>
@@ -109,8 +110,8 @@ export default function info(props, navigation) {
                 </View>
                 <View style={styles.textContainer}>
                   <Text style={styles.textInfo}>
-                    Vérifier la validité de votre test, vaccin et profiter de
-                    vos voyages et de votre vie.
+                    GoPass vérifie la validité de vos tests, vaccins et profiter
+                    de vos voyages et de votre vie.
                   </Text>
                 </View>
               </View>
@@ -174,7 +175,7 @@ export default function info(props, navigation) {
                   </View>
                   <View style={styles.textContainer}>
                     <Text style={styles.textInfo}>
-                      rester toujours a plus d'un métre les uns des autres.
+                      rester toujours à plus d'un métre les uns des autres.
                     </Text>
                   </View>
                 </View>

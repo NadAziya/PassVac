@@ -89,6 +89,9 @@ export default function Auth(props, navigation) {
         }
       })
       .catch((err) => {
+        if (err) {
+          return alert("Code incorrect");
+        }
         console.log(err);
       });
   };

@@ -107,7 +107,7 @@ export default function SignInCostum(props, navigation) {
                 value={nom}
                 onChangeText={(value) => setNom(value)}
                 style={{
-                  marginBottom: 15,
+                  marginBottom: 20,
                   width: "85%",
                   height: 50,
                   backgroundColor: "#F6F6F6",
@@ -124,7 +124,7 @@ export default function SignInCostum(props, navigation) {
                 value={prenom}
                 onChangeText={(value) => setPrenom(value)}
                 style={{
-                  marginBottom: 15,
+                  marginBottom: 20,
                   width: "85%",
                   height: 50,
                   backgroundColor: "#F6F6F6",
@@ -137,62 +137,30 @@ export default function SignInCostum(props, navigation) {
             </View>
             <Text style={styles.label}>Date de naissance </Text>
             <View style={styles.inputCenter}>
-              <Input
-                value={dateNes}
-                onChangeText={(value) => setDateNes(value)}
-                autoCapitalize="sentences"
-                blurOnSubmit
-                style={{
-                  marginBottom: 15,
-                  width: "85%",
-                  height: 50,
-                  backgroundColor: "#F6F6F6",
-                  borderColor: "transparent",
-                  borderRadius: 14,
-                }}
-              />
-              {/* <DatePicker
-                style={{ width: 200 }}
-                date={dateNes}
-                mode="date"
-                placeholder="select date"
-                format="YYYY-MM-DD"
-                minDate="2016-05-01"
-                maxDate="2016-06-01"
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                customStyles={{
-                  dateIcon: {
-                    position: "absolute",
-                    left: 0,
-                    top: 4,
-                    marginLeft: 0,
-                  },
-                  dateInput: {
-                    marginLeft: 36,
-                  },
-                }}
-                onDateChange={(date) => setDateNes(date)}
-              /> */}
               <DatePicker
-                style={{ width: 200 }}
+                style={{ width: "85%" }}
                 date={dateNes}
                 mode="date"
-                placeholder="select date"
-                format="YYYY-MM-DD"
-                minDate="2016-05-01"
-                maxDate="2016-06-01"
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
+                placeholder="Selectionner une date"
+                format="DD-MM-YYYY"
+                minDate="01-01-1900"
+                maxDate="01-01-2022"
+                confirmBtnText="Confirmer"
+                cancelBtnText="Annuler"
                 customStyles={{
                   dateIcon: {
                     position: "absolute",
                     left: 0,
-                    top: 4,
-                    marginLeft: 0,
+                    top: 7,
+                    marginLeft: 5,
                   },
                   dateInput: {
-                    marginLeft: 36,
+                    width: "70%",
+                    height: 50,
+                    backgroundColor: "#F6F6F6",
+                    borderColor: "transparent",
+                    borderRadius: 14,
+                    marginTop: 10,
                   },
                 }}
                 onDateChange={(date) => setDateNes(date)}
@@ -211,7 +179,7 @@ export default function SignInCostum(props, navigation) {
                   width: 330,
                   height: 50,
                   justifyContent: "center",
-                  marginTop: 15,
+                  marginTop: 30,
                 }}
               >
                 S'enregistrer
@@ -227,7 +195,7 @@ export default function SignInCostum(props, navigation) {
 const styles = StyleSheet.create({
   container: { height: "100%", width: "100%", backgroundColor: "white" },
   viewInput: {
-    marginTop: 70,
+    marginTop: 45,
   },
   buttonContainer: {
     justifyContent: "center",
@@ -239,6 +207,6 @@ const styles = StyleSheet.create({
     marginLeft: 33,
     marginBottom: 5,
     color: "gray",
-    fontWeight: "bold",
+    //fontWeight: "bold",
   },
 });

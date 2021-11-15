@@ -64,7 +64,7 @@ const Accueil = (props, navigation) => {
 
   const renderElement = () => {
     if (userInfo.vaccination == "Non vacciné(e)") {
-      if (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") {
+      if (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") {
         return (
           <MaSante
             style={{ backgroundColor: "#9D99C9" }}
@@ -84,7 +84,7 @@ const Accueil = (props, navigation) => {
       }
     } else {
       if (
-        (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
+        (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") &&
         userInfo.date_2dose == "00-00-0000"
       ) {
         return (
@@ -108,7 +108,7 @@ const Accueil = (props, navigation) => {
         );
       } else {
         if (
-          (userInfo.etat == "Negatif(ve)" || userInfo.etat == "/") &&
+          (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") &&
           userInfo.date_2dose !== "00-00-0000"
         ) {
           return (
