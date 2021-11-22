@@ -62,7 +62,8 @@ export default function SignInCostum(props, navigation) {
           etat: "/",
           date_test: "00-00-0000",
           centre_test: "/",
-          num_lot: "/",
+          num_lot1: "/",
+          num_lot2: "/",
           imageUri: selectedImage,
         });
         setIsLoading(false);
