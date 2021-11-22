@@ -45,6 +45,7 @@ export default function SignInCostum(props, navigation) {
   let currentUser = firebase.auth().currentUser;
   const onSigninHandler = async () => {
     setIsLoading(true);
+    let cDate = new Date(dateNes);
     try {
       console.log(firebase.auth().currentUser);
 
@@ -53,19 +54,21 @@ export default function SignInCostum(props, navigation) {
           nom: nom,
           prenom: prenom,
           date_de_naissance: dateNes,
-          vaccination: "Non vacciné(e)",
+          vaccination: "Non-vacciné(e)",
           type_vaccin: "/",
           date_1dose: "00-00-0000",
           date_2dose: "00-00-0000",
-          centre_vacc: "Null",
+          centre_vacc: "/",
           etat: "/",
           date_test: "00-00-0000",
           centre_test: "/",
+          num_lot: "/",
           imageUri: selectedImage,
         });
         setIsLoading(false);
         props.navigation.navigate("Info");
       } else {
+        setIsLoading(false);
         Alert.alert("ERREUR !", "Veuillez remplir les champs correctement.", [
           { text: "Ok" },
         ]);

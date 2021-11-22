@@ -7,21 +7,47 @@ const AlertVerif = (props) => {
     <View style={{ ...styles.container, ...props.style }}>
       <View
         style={{
-          flexDirection: "row",
+          flexDirection: "column",
           justifyContent: "space-evenly",
         }}
       >
-        <AntDesign name="Safety" size={25} color="white" />
-        <Text
+        <View
           style={{
-            textAlign: "center",
-            fontSize: 17,
-            fontWeight: "500",
-            color: "white",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
           }}
         >
-          {props.text}
-        </Text>
+          <AntDesign name="Safety" size={25} color="white" />
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 17,
+              fontWeight: "500",
+              color: "white",
+            }}
+          >
+            {props.text}
+          </Text>
+        </View>
+
+        <View>
+          <Text style={{ textAlign: "center", color: "white" }}>
+            __________________________________
+          </Text>
+        </View>
+        <View>
+          <Text
+            style={{
+              textAlign: "center",
+              color: "white",
+              fontSize: 17,
+              fontWeight: "500",
+              marginTop: 10,
+            }}
+          >
+            {props.etat}
+          </Text>
+        </View>
       </View>
     </View>
   );

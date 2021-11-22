@@ -17,7 +17,6 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons";
 
 import { SearchBar } from "react-native-elements";
-import Colors from "../../constants/colors/Colors";
 
 const CentreVac = (props) => {
   const [centre, setCentre] = useState([]);
@@ -98,7 +97,7 @@ const CentreVac = (props) => {
                 margin: 5,
                 height: 120,
                 flexDirection: "row",
-                width: "95%",
+                width: "97%",
                 justifyContent: "space-between",
                 padding: 10,
                 backgroundColor: "white",
@@ -162,96 +161,95 @@ const CentreVac = (props) => {
               </TouchableOpacity>
             </Card>
           ))}
-
-          <Backdrop
-            cent={cent}
-            visible={visible}
-            handleOpen={() => handleOpen(cent)}
-            handleClose={() => handleClose({})}
-            onClose={() => {}}
-            swipeConfig={{
-              velocityThreshold: 0.3,
-              directionalOffsetThreshold: 80,
-            }}
-            animationConfig={{
-              speed: 14,
-              bounciness: 4,
-            }}
-            yarn
-            overlayColor="rgba(0,0,0,0.8)"
-            backdropStyle={{
-              backgroundColor: "#fff",
-            }}
-          >
-            <View
-              style={{
-                justifyContent: "space-around",
-                marginLeft: 10,
-                padding: 10,
-                height: 300,
-                marginBottom: 10,
-              }}
-            >
-              <View>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 20,
-                      fontWeight: "600",
-                      marginRight: 50,
-                      color: "blue",
-                    }}
-                  >
-                    {" "}
-                    <MaterialCommunityIcons
-                      name="hospital-marker"
-                      size={35}
-                      color="blue"
-                    />
-                    {cent.nomCentre}
-                  </Text>
-                </View>
-                <Text
-                  numberOfLines={1}
-                  style={{
-                    textAlign: "center",
-                    color: "#9e9e9e",
-                    fontWeight: "300",
-                  }}
-                >
-                  _________________________________
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={styles.text}>Wilaya :</Text>
-                <Text style={styles.textInfo}>{cent.wilaya}</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={styles.text}>tel :</Text>
-                <Text style={styles.textInfo}>0{cent.tel}</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={styles.text}>Numéro d'agrement :</Text>
-                <Text style={styles.textInfo}>{cent.numAgrement}</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={styles.text}>Adresse :</Text>
-                <Text style={styles.textInfo}>{cent.adresse}</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={styles.text}>Code Postal :</Text>
-                <Text style={styles.textInfo}>{cent.codePostal}</Text>
-              </View>
-            </View>
-          </Backdrop>
         </ScrollView>
       )}
+      <Backdrop
+        cent={cent}
+        visible={visible}
+        handleOpen={() => handleOpen(cent)}
+        handleClose={() => handleClose({})}
+        onClose={() => {}}
+        swipeConfig={{
+          velocityThreshold: 0.3,
+          directionalOffsetThreshold: 80,
+        }}
+        animationConfig={{
+          speed: 14,
+          bounciness: 4,
+        }}
+        yarn
+        overlayColor="rgba(0,0,0,0.8)"
+        backdropStyle={{
+          backgroundColor: "#fff",
+        }}
+      >
+        <View
+          style={{
+            justifyContent: "space-around",
+            marginLeft: 10,
+            padding: 10,
+            height: 300,
+            marginBottom: 10,
+          }}
+        >
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "600",
+                  marginRight: 50,
+                  color: "blue",
+                }}
+              >
+                {" "}
+                <MaterialCommunityIcons
+                  name="hospital-marker"
+                  size={35}
+                  color="blue"
+                />
+                {cent.nomCentre}
+              </Text>
+            </View>
+            <Text
+              numberOfLines={1}
+              style={{
+                textAlign: "center",
+                color: "#9e9e9e",
+                fontWeight: "300",
+              }}
+            >
+              _________________________________
+            </Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.text}>Wilaya :</Text>
+            <Text style={styles.textInfo}>{cent.wilaya}</Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.text}>tel :</Text>
+            <Text style={styles.textInfo}>0{cent.tel}</Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.text}>Numéro d'agrement :</Text>
+            <Text style={styles.textInfo}>{cent.numAgrement}</Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.text}>Adresse :</Text>
+            <Text style={styles.textInfo}>{cent.adresse}</Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.text}>Code Postal :</Text>
+            <Text style={styles.textInfo}>{cent.codePostal}</Text>
+          </View>
+        </View>
+      </Backdrop>
     </View>
   );
 };

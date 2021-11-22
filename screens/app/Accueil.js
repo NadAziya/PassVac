@@ -18,14 +18,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import { Fontisto } from "@expo/vector-icons";
 
-import { QRCode } from "react-native-custom-qr-codes-expo";
-
 import MaSante from "../../components/AccueilComponents/MaSante";
 import Colors from "../../constants/colors/Colors";
-
-const wait = (timeout) => {
-  return new Promise((resolve) => setTimeout(resolve, timeout));
-};
 
 const Accueil = (props, navigation) => {
   const [loading, setLoading] = useState(false);
@@ -63,13 +57,13 @@ const Accueil = (props, navigation) => {
   }, []);
 
   const renderElement = () => {
-    if (userInfo.vaccination == "Non vacciné(e)") {
+    if (userInfo.vaccination == "Non-vacciné(e)") {
       if (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") {
         return (
           <MaSante
             style={{ backgroundColor: "#9D99C9" }}
             children=" Rendez-vous au centre de vaccination, "
-            text="afin de vous munir d'un code QR
+            text="afin de vous munir d'un code QR 
       valide"
           />
         );
@@ -168,106 +162,108 @@ const Accueil = (props, navigation) => {
           </Text>
 
           {renderElement()}
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-              padding: 5,
-              paddingLeft: 15,
-              marginTop: 15,
-            }}
-          >
-            Pass sanitaire
-          </Text>
-          <TouchableOpacity
-            style={{ justifyContent: "center", alignItems: "center" }}
-            onPress={() => {
-              props.navigation.navigate("Setting");
-            }}
-          >
-            <Card style={styles.card}>
-              <View
-                style={{
-                  height: 75,
-                  width: 75,
-                  borderRadius: 40,
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Image
+          <ScrollView>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                padding: 5,
+                paddingLeft: 15,
+                marginTop: 15,
+              }}
+            >
+              Pass sanitaire
+            </Text>
+            <TouchableOpacity
+              style={{ justifyContent: "center", alignItems: "center" }}
+              onPress={() => {
+                props.navigation.navigate("Setting");
+              }}
+            >
+              <Card style={styles.card}>
+                <View
                   style={{
-                    width: 59,
-                    height: 90,
+                    height: 75,
+                    width: 75,
+                    borderRadius: 40,
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                  source={require("../../assets/img/passe.png")}
-                />
-                <View style={{ marginLeft: 10 }}>
-                  <Text
+                >
+                  <Image
                     style={{
-                      fontSize: 18,
-                      fontWeight: "bold",
-                      marginBottom: 5,
+                      width: 59,
+                      height: 90,
                     }}
-                  >
-                    Ouvrir mon GoPass
-                  </Text>
-                  <Text>accéder à mon certificat de vaccination. </Text>
+                    source={require("../../assets/img/passe.png")}
+                  />
+                  <View style={{ marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: "bold",
+                        marginBottom: 5,
+                      }}
+                    >
+                      Ouvrir mon GoPass
+                    </Text>
+                    <Text>accéder à mon certificat de vaccination. </Text>
+                  </View>
                 </View>
-              </View>
-            </Card>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{ justifyContent: "center", alignItems: "center" }}
-            onPress={() => {
-              props.navigation.navigate("Vaccin");
-            }}
-          >
-            <Card style={styles.card}>
-              <View style={styles.viewIcon}>
-                <Fontisto name="injection-syringe" size={40} color="white" />
-              </View>
-              <View style={{ marginLeft: 10, flex: 3 }}>
-                <Text style={styles.titleCard}>
-                  Quels sont les vaccins disponible?
-                </Text>
-                <Text>
-                  afficher les informations sur les vaccins disponibles en
-                  Algérie.
-                </Text>
-              </View>
-            </Card>
-          </TouchableOpacity>
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-              padding: 5,
-              paddingLeft: 15,
-            }}
-          >
-            Historique
-          </Text>
-          <TouchableOpacity
-            style={{ justifyContent: "center", alignItems: "center" }}
-            onPress={() => {
-              props.navigation.navigate("Donnees");
-            }}
-          >
-            <Card style={styles.card}>
-              <View style={styles.viewIcon}>
-                <MaterialIcons name="history" size={40} color="white" />
-              </View>
-              <View style={{ marginLeft: 10, flex: 3 }}>
-                <Text style={styles.titleCard}>
-                  Voir l'historique de mes tests PCR
-                </Text>
-                <Text>afficher les données relative 0 mes tests.</Text>
-              </View>
-            </Card>
-          </TouchableOpacity>
+              </Card>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ justifyContent: "center", alignItems: "center" }}
+              onPress={() => {
+                props.navigation.navigate("Vaccin");
+              }}
+            >
+              <Card style={styles.card}>
+                <View style={styles.viewIcon}>
+                  <Fontisto name="injection-syringe" size={40} color="white" />
+                </View>
+                <View style={{ marginLeft: 10, flex: 3 }}>
+                  <Text style={styles.titleCard}>
+                    Quels sont les vaccins disponible?
+                  </Text>
+                  <Text>
+                    afficher les informations sur les vaccins disponibles en
+                    Algérie.
+                  </Text>
+                </View>
+              </Card>
+            </TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                padding: 5,
+                paddingLeft: 15,
+              }}
+            >
+              Historique
+            </Text>
+            <TouchableOpacity
+              style={{ justifyContent: "center", alignItems: "center" }}
+              onPress={() => {
+                props.navigation.navigate("Donnees");
+              }}
+            >
+              <Card style={styles.card}>
+                <View style={styles.viewIcon}>
+                  <MaterialIcons name="history" size={40} color="white" />
+                </View>
+                <View style={{ marginLeft: 10, flex: 3 }}>
+                  <Text style={styles.titleCard}>
+                    Voir l'historique de mes tests PCR
+                  </Text>
+                  <Text>afficher les données relative à mes tests.</Text>
+                </View>
+              </Card>
+            </TouchableOpacity>
+          </ScrollView>
         </ScrollView>
       )}
     </View>

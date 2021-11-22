@@ -30,21 +30,15 @@ const DetailPass = (props) => {
         >
           {props.vaccination} COVID-19
         </Text>
-        <Text
-          style={{
-            fontWeight: "400",
-            fontSize: 15,
-            color: "#9e9e9e",
-          }}
-        >
-          {props.dose}
-        </Text>
       </View>
       <TouchableOpacity
-        style={{ justifyContent: "flex-end", alignItems: "center" }}
+        style={{
+          justifyContent: "flex-end",
+          alignItems: "center",
+        }}
         onPress={props.onPress}
       >
-        <AntDesign name="downcircle" size={33} color="blue" />
+        <AntDesign name="downcircle" size={40} color="blue" />
       </TouchableOpacity>
     </Card>
   );

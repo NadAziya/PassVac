@@ -27,7 +27,7 @@ import Colors from "../constants/colors/Colors";
 import AvantScan from "../screens/app/AvantScan";
 import CentreVac from "../screens/app/CentreVac";
 import Vaccin from "../screens/app/VaccinType";
-import Logout from "../screens/app/Logout";
+
 import Sinovac from "../screens/app/Sinovac";
 import Astrazeneca from "../screens/app/Astrazeneca";
 import Spoutnik from "../screens/app/Spoutnik";
@@ -234,14 +234,6 @@ function Scann() {
   );
 }
 
-function Deconnexion({ navigation }) {
-  return (
-    <Stack.Navigator initialRouteName="TypeVaccin">
-      <Stack.Screen name="deconnexion" component={Logout} />
-    </Stack.Navigator>
-  );
-}
-
 function Navigator() {
   return (
     <Tab.Navigator
@@ -280,9 +272,9 @@ function Navigator() {
 
 const HomeScreenStack = ({ navigation }) => {
   return (
-    <Stack.Navigator initialRouteName="HomeScreen">
+    <Stack.Navigator initialRouteName="Accueil">
       <Stack.Screen
-        name="Navigator"
+        name="Accueil"
         component={Navigator}
         options={({ route }) => ({
           headerTitle: getHeaderTitle(route),
@@ -291,9 +283,9 @@ const HomeScreenStack = ({ navigation }) => {
             <NavigationDrawerStructure navigationProps={navigation} />
           ),
 
-          headerTintColor: "black", //Set Header text color
+          headerTintColor: "black",
           headerTitleStyle: {
-            fontWeight: "bold", //Set Header text style
+            fontWeight: "bold",
           },
         })}
       />

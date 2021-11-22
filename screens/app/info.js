@@ -80,7 +80,7 @@ export default function info(props, navigation) {
                 </View>
                 <View style={styles.textContainer}>
                   <Text style={styles.textInfo}>
-                    GoPass stock seulement vos informations personnelles
+                    GoPass stocke seulement vos informations personnelles
                     d'identification sur votre appareil mobile.
                   </Text>
                 </View>
@@ -95,7 +95,7 @@ export default function info(props, navigation) {
                 </View>
                 <View style={styles.textContainer}>
                   <Text style={styles.textInfo}>
-                    GoPass génére un code Qr coloré qui représente votre état
+                    GoPass génére un QR CODE coloré qui représente votre état
                     sanitaire face à la covid-19.
                   </Text>
                 </View>
@@ -110,8 +110,8 @@ export default function info(props, navigation) {
                 </View>
                 <View style={styles.textContainer}>
                   <Text style={styles.textInfo}>
-                    GoPass vérifie la validité de vos tests, vaccins et profiter
-                    de vos voyages et de votre vie.
+                    GoPass vérifie la validité de vos tests et vaccins, profiter
+                    ainsi de vos voyages et de votre vie.
                   </Text>
                 </View>
               </View>

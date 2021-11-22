@@ -78,7 +78,7 @@ const MonPass = ({ props, navigation }) => {
   }, []);
 
   const renderElement = () => {
-    if (userInfo.vaccination == "Non vacciné(e)") {
+    if (userInfo.vaccination == "Non-vacciné(e)") {
       if (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") {
         return (
           <QRCode
@@ -212,7 +212,6 @@ const MonPass = ({ props, navigation }) => {
           >
             <DetailPass
               vaccination={userInfo.vaccination}
-              dose={userInfo.date_2dose}
               onPress={() => setVisible(true)}
             />
           </View>
@@ -287,16 +286,6 @@ const MonPass = ({ props, navigation }) => {
                 </Text>
               </View>
             </View>
-
-            {/*   <Button
-              title="Logout"
-              onPress={async () => {
-                await firebase.auth().signOut();
-                AuthStorage.removeUser();
-                setUser(false);
-                setInfo(false);
-              }}
-            />*/}
           </View>
           <Backdrop
             visible={visible}
@@ -334,6 +323,13 @@ const MonPass = ({ props, navigation }) => {
                     alignItems: "center",
                   }}
                 >
+                  <Text style={{ marginRight: 10 }}>
+                    {userInfo.vaccination === "Vacciné(e)" ? (
+                      <MaterialIcons name="verified" size={40} color="green" />
+                    ) : (
+                      <Entypo name="circle-with-cross" size={40} color="red" />
+                    )}
+                  </Text>
                   <Text
                     style={{
                       fontSize: 18,
@@ -344,11 +340,6 @@ const MonPass = ({ props, navigation }) => {
                   >
                     Preuve de vaccination
                   </Text>
-                  {userInfo.vaccination === "Vacciné(e)" ? (
-                    <MaterialIcons name="verified" size={40} color="green" />
-                  ) : (
-                    <Entypo name="circle-with-cross" size={40} color="red" />
-                  )}
                 </View>
                 <Text
                   numberOfLines={1}
@@ -379,6 +370,10 @@ const MonPass = ({ props, navigation }) => {
                 <Text style={styles.textInfo}>{userInfo.date_2dose}</Text>
               </View>
               <View style={{ flexDirection: "row" }}>
+                <Text style={styles.text}>Numéro de lot :</Text>
+                <Text style={styles.textInfo}>{userInfo.num_lot}</Text>
+              </View>
+              <View style={{ flexDirection: "row", marginBottom: 10 }}>
                 <Text style={styles.text}>Centre de vaccination :</Text>
                 <Text style={styles.textInfo}>{userInfo.centre_vacc}</Text>
               </View>

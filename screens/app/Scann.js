@@ -42,11 +42,19 @@ export default function Accueil() {
   const Verify = () => {
     if (text == "Vacciné(e) Négatif(ve)") {
       return (
-        <AlertVerif text="GoPass valide" style={{ backgroundColor: "green" }} />
+        <AlertVerif
+          text="GoPass valide"
+          etat={text}
+          style={{ backgroundColor: "green" }}
+        />
       );
     } else {
       return (
-        <AlertVerif text="GoPass invalide" style={{ backgroundColor: "red" }} />
+        <AlertVerif
+          text="GoPass invalide"
+          etat={text}
+          style={{ backgroundColor: "red" }}
+        />
       );
     }
   };

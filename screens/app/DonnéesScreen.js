@@ -6,6 +6,8 @@ import {
   Modal,
   Text,
   View,
+  ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import Donnees from "../../components/AccueilComponents/Donnees";
 import Colors from "../../constants/colors/Colors";
@@ -14,6 +16,7 @@ import "@firebase/auth";
 
 const Donnee = (props) => {
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = React.useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [test, setTest] = useState([]);
@@ -21,6 +24,8 @@ const Donnee = (props) => {
   const db = firebase.firestore();
 
   const fetchData = useCallback(async () => {
+    setLoading(true);
+    setRefreshing(true);
     try {
       let currentUser = firebase.auth().currentUser;
 
@@ -31,11 +36,12 @@ const Donnee = (props) => {
         .get();
 
       setTest(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setLoading(false);
+      setRefreshing(false);
     } catch (err) {
       console.log(err.message);
     }
   });
-  console.log(test, "hhhhhh");
 
   const ouvrirModal = (tes) => {
     setModalVisible(true);
@@ -46,7 +52,7 @@ const Donnee = (props) => {
     fetchData();
   }, []);
   return (
-    <View>
+    <View style={{ height: "100%" }}>
       <Modal
         tes={tes}
         animationType="slide"
@@ -59,7 +65,6 @@ const Donnee = (props) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            {/*ici commmence le code de la modal */}
             <Text style={styles.modalText}>Test PCR Covid-19</Text>
 
             <Text style={{ fontWeight: "600", fontSize: 19, marginBottom: 4 }}>
@@ -92,18 +97,30 @@ const Donnee = (props) => {
           </View>
         </View>
       </Modal>
-      <ScrollView>
-        {test.map((tes, index) => (
-          <Donnees
-            key={index}
-            TestResult={tes.etat}
-            TestDate={tes.date_test}
-            onPress={() => {
-              ouvrirModal(tes);
-            }}
-          />
-        ))}
-      </ScrollView>
+      {loading ? (
+        <ActivityIndicator
+          size="large"
+          color="black"
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        />
+      ) : (
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={fetchData} />
+          }
+        >
+          {test.map((tes, index) => (
+            <Donnees
+              key={index}
+              TestResult={tes.etat}
+              TestDate={tes.date_test}
+              onPress={() => {
+                ouvrirModal(tes);
+              }}
+            />
+          ))}
+        </ScrollView>
+      )}
     </View>
   );
 };
