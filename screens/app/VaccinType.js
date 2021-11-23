@@ -6,9 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import Colors from "../../constants/colors/Colors";
 import { Card } from "react-native-shadow-cards";
-
 import { Fontisto } from "@expo/vector-icons";
 
 const Vaccin = (props) => {

@@ -13,20 +13,19 @@ import { useNavigation } from "@react-navigation/native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Accueil from "../screens/app/Accueil";
-
 import MonPass from "../screens/app/MonPass";
-
 import Donnee from "../screens/app/DonnéesScreen";
 import Scanner from "../screens/app/Scann";
 import Colors from "../constants/colors/Colors";
 import AvantScan from "../screens/app/AvantScan";
 import CentreVac from "../screens/app/CentreVac";
 import Vaccin from "../screens/app/VaccinType";
+import Help from "../screens/app/Help";
 
 import Sinovac from "../screens/app/Sinovac";
 import Astrazeneca from "../screens/app/Astrazeneca";
@@ -40,6 +39,10 @@ import "@firebase/auth";
 
 import AuthContext from "../auth/context";
 import AuthStorage from "../auth/storage";
+import HelpPass from "../screens/HelpScreens/HelpPass";
+import HelpScan from "../screens/HelpScreens/HelpScan";
+import HelpDetaiCentre from "../screens/HelpScreens/HelpDetailCentre";
+import HelpHisto from "../screens/HelpScreens/HelpHisto";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -73,7 +76,7 @@ const GoBackFunction = (props) => {
       style={{ marginLeft: 10, marginTop: 2 }}
       onPress={() => goBack()}
     >
-      <AntDesign name="arrowleft" size={30} color="black" />
+      <AntDesign name="arrowleft" size={35} color="black" />
     </TouchableOpacity>
   );
 };
@@ -81,6 +84,20 @@ const GoBackFunction = (props) => {
 const GoBackTypeVaccin = (props) => {
   const goBack = () => {
     props.navigation.navigate("TypeVaccin");
+  };
+  return (
+    <TouchableOpacity
+      style={{ marginLeft: 10, marginTop: 2 }}
+      onPress={() => goBack()}
+    >
+      <AntDesign name="arrowleft" size={30} color="black" />
+    </TouchableOpacity>
+  );
+};
+
+const GoBackHelp = (props) => {
+  const goBack = () => {
+    props.navigation.navigate("Help");
   };
   return (
     <TouchableOpacity
@@ -192,6 +209,52 @@ function Setting({ navigation }) {
         }}
         name="MonPass"
         component={MonPass}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "Aide",
+          headerLeft: () => <GoBackHelp navigation={navigation} />,
+        }}
+        name="HelpPass"
+        component={HelpPass}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "Aide",
+          headerLeft: () => <GoBackHelp navigation={navigation} />,
+        }}
+        name="HelpScan"
+        component={HelpScan}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "Aide",
+          headerLeft: () => <GoBackHelp navigation={navigation} />,
+        }}
+        name="HelpDetailCentre"
+        component={HelpDetaiCentre}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "Aide",
+          headerLeft: () => <GoBackHelp navigation={navigation} />,
+        }}
+        name="HelpHisto"
+        component={HelpHisto}
+      />
+    </Stack.Navigator>
+  );
+}
+function Aide({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="Help">
+      <Stack.Screen
+        options={{
+          headerTitle: "Aide",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="Help"
+        component={Help}
       />
     </Stack.Navigator>
   );
@@ -353,6 +416,17 @@ const HomeNavigation = () => {
           ),
         }}
         component={VaccinType}
+      />
+      <Drawer.Screen
+        name="HelpAide"
+        options={{
+          drawerLabel: "Aide et FAQ",
+          headerShown: false,
+          drawerIcon: ({ color }) => (
+            <Entypo name="help-with-circle" size={22} color={color} />
+          ),
+        }}
+        component={Aide}
       />
     </Drawer.Navigator>
   );

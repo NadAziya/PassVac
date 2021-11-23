@@ -1,11 +1,5 @@
 import React, { useContext } from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -52,7 +46,6 @@ const CustomDrawer = (props) => {
             <Text
               style={{
                 fontSize: 15,
-
                 marginLeft: 6,
               }}
             >

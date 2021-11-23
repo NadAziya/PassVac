@@ -3,7 +3,6 @@ import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 
 import { Card } from "react-native-shadow-cards";
 import { AntDesign } from "@expo/vector-icons";
-import Colors from "../constants/colors/Colors";
 
 const DetailPass = (props) => {
   return (
