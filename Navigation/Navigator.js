@@ -40,9 +40,9 @@ import "@firebase/auth";
 import AuthContext from "../auth/context";
 import AuthStorage from "../auth/storage";
 import HelpPass from "../screens/HelpScreens/HelpPass";
+import HelpHisto from "../screens/HelpScreens/HelpHisto";
 import HelpScan from "../screens/HelpScreens/HelpScan";
 import HelpDetaiCentre from "../screens/HelpScreens/HelpDetailCentre";
-import HelpHisto from "../screens/HelpScreens/HelpHisto";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -210,6 +210,20 @@ function Setting({ navigation }) {
         name="MonPass"
         component={MonPass}
       />
+    </Stack.Navigator>
+  );
+}
+function Aide({ navigation }) {
+  return (
+    <Stack.Navigator initialRouteName="Help">
+      <Stack.Screen
+        options={{
+          headerTitle: "Aide",
+          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
+        }}
+        name="Help"
+        component={Help}
+      />
       <Stack.Screen
         options={{
           headerTitle: "Aide",
@@ -231,30 +245,16 @@ function Setting({ navigation }) {
           headerTitle: "Aide",
           headerLeft: () => <GoBackHelp navigation={navigation} />,
         }}
-        name="HelpDetailCentre"
-        component={HelpDetaiCentre}
+        name="HelpHisto"
+        component={HelpHisto}
       />
       <Stack.Screen
         options={{
           headerTitle: "Aide",
           headerLeft: () => <GoBackHelp navigation={navigation} />,
         }}
-        name="HelpHisto"
-        component={HelpHisto}
-      />
-    </Stack.Navigator>
-  );
-}
-function Aide({ navigation }) {
-  return (
-    <Stack.Navigator initialRouteName="Help">
-      <Stack.Screen
-        options={{
-          headerTitle: "Aide",
-          headerLeft: () => <GoBackFunction navigationProps={navigation} />,
-        }}
-        name="Help"
-        component={Help}
+        name="HelpDetailCentre"
+        component={HelpDetaiCentre}
       />
     </Stack.Navigator>
   );

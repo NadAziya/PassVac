@@ -366,12 +366,16 @@ const MonPass = ({ props, navigation }) => {
                 <Text style={styles.textInfo}>{userInfo.date_1dose} </Text>
               </View>
               <View style={{ flexDirection: "row" }}>
+                <Text style={styles.text}>Numéro de lot 1:</Text>
+                <Text style={styles.textInfo}>{userInfo.num_lot1}</Text>
+              </View>
+              <View style={{ flexDirection: "row" }}>
                 <Text style={styles.text}>Date dose 2 :</Text>
                 <Text style={styles.textInfo}>{userInfo.date_2dose}</Text>
               </View>
               <View style={{ flexDirection: "row" }}>
-                <Text style={styles.text}>Numéro de lot :</Text>
-                <Text style={styles.textInfo}>{userInfo.num_lot}</Text>
+                <Text style={styles.text}>Numéro de lot 2 :</Text>
+                <Text style={styles.textInfo}>{userInfo.num_lot2}</Text>
               </View>
               <View style={{ flexDirection: "row", marginBottom: 10 }}>
                 <Text style={styles.text}>Centre de vaccination :</Text>
