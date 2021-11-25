@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 
 const HelpHisto = () => {
   return (
-    <View style={{ height: "100%", backgroundColor: "white" }}>
+    <ScrollView style={{ height: "100%", backgroundColor: "white" }}>
       <Text
         style={{
           fontSize: 20,
@@ -16,7 +16,62 @@ const HelpHisto = () => {
       >
         Comment je peut accéder aux tests que j'ai effectuer ?
       </Text>
-    </View>
+      <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
+        vous pouvez accéder à l'historique de vos tests PCR en cliquant sur la
+        card 'historique' qui se trouve à l'écran d'accueil.
+      </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          marginVertical: 20,
+        }}
+      >
+        <Image
+          style={{ height: 360, width: 205 }}
+          source={require("../../assets/img/helpHisto1.jpg")}
+        />
+      </View>
+      <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
+        ou bien y accédé en cliquant sur l'option Mon Historique.
+      </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          marginVertical: 20,
+        }}
+      >
+        <Image
+          style={{ height: 250, width: 175 }}
+          source={require("../../assets/img/passHisto.jpg")}
+        />
+      </View>
+      <Text
+        style={{
+          padding: 10,
+          textAlign: "justify",
+          lineHeight: 20,
+          marginTop: 15,
+        }}
+      >
+        pour afficher plus de détails concernant vos résultats, cliquer.
+      </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          marginBottom: 40,
+        }}
+      >
+        <Image
+          style={{ height: 150, width: 330 }}
+          source={require("../../assets/img/helpHisto2.jpg")}
+        />
+      </View>
+    </ScrollView>
   );
 };
 export default HelpHisto;

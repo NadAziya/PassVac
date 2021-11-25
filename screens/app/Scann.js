@@ -25,10 +25,16 @@ export default function Accueil() {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ data }) => {
+  const handleBarCodeScanned = (qrdata) => {
+    const { data, nom, prenom } = JSON.parse(qrdata.data);
     setScanned(true);
     setText(data);
+    setText2(nom);
+    setText3(prenom);
+
     console.log(data);
+    console.log(nom);
+    console.log(prenom);
     //alert(` L'état du patient : ${data} ` );
   };
 

@@ -82,13 +82,11 @@ const MonPass = ({ props, navigation }) => {
       if (userInfo.etat == "Négatif(ve)" || userInfo.etat == "/") {
         return (
           <QRCode
-            value={[
-              {
-                data: "Non vacciné(e) Négatif(ve)",
-                nom: `${userInfo.nom}`,
-                prenom: `${userInfo.prenom}`,
-              },
-            ]}
+            value={JSON.stringify({
+              data: "Non vacciné(e) Négatif(ve)",
+              nom: `${userInfo.nom}`,
+              prenom: `${userInfo.prenom}`,
+            })}
             color="black"
             size={200}
           />
@@ -96,13 +94,11 @@ const MonPass = ({ props, navigation }) => {
       } else {
         return (
           <QRCode
-            value={[
-              {
-                data: "Non vacciné(e) Positif(ve)",
-                nom: `${userInfo.nom}`,
-                prenom: `${userInfo.prenom}`,
-              },
-            ]}
+            value={JSON.stringify({
+              data: "Non vacciné(e) Positif(ve)",
+              nom: `${userInfo.nom}`,
+              prenom: `${userInfo.prenom}`,
+            })}
             size={200}
             color="red"
           />
@@ -115,13 +111,11 @@ const MonPass = ({ props, navigation }) => {
       ) {
         return (
           <QRCode
-            value={[
-              {
-                data: "Vacciné(e) 1dose Négatif(ve)",
-                nom: `${userInfo.nom}`,
-                prenom: `${userInfo.prenom}`,
-              },
-            ]}
+            value={JSON.stringify({
+              data: "Vacciné(e) 1dose Négatif(ve)",
+              nom: `${userInfo.nom}`,
+              prenom: `${userInfo.prenom}`,
+            })}
             color="orange"
             size={200}
           />
@@ -132,13 +126,11 @@ const MonPass = ({ props, navigation }) => {
       ) {
         return (
           <QRCode
-            value={[
-              {
-                data: "Vacciné(e) 1dose Positif(ve)",
-                nom: `${userInfo.nom}`,
-                prenom: `${userInfo.prenom}`,
-              },
-            ]}
+            value={JSON.stringify({
+              data: "Vacciné(e) 1dose Positif(ve)",
+              nom: `${userInfo.nom}`,
+              prenom: `${userInfo.prenom}`,
+            })}
             color="red"
             size={200}
           />
@@ -150,13 +142,11 @@ const MonPass = ({ props, navigation }) => {
         ) {
           return (
             <QRCode
-              value={[
-                {
-                  data: "Vacciné(e) Négatif(ve)",
-                  nom: `${userInfo.nom}`,
-                  prenom: `${userInfo.prenom}`,
-                },
-              ]}
+              value={JSON.stringify({
+                data: "Vacciné(e) Négatif(ve)",
+                nom: `${userInfo.nom}`,
+                prenom: `${userInfo.prenom}`,
+              })}
               color="green"
               logo={require("../../assets/img/valide.png")}
               logoSize={50}
@@ -169,13 +159,11 @@ const MonPass = ({ props, navigation }) => {
         ) {
           return (
             <QRCode
-              value={[
-                {
-                  data: "Vacciné(e) Positif(ve)",
-                  nom: `${userInfo.nom}`,
-                  prenom: `${userInfo.prenom}`,
-                },
-              ]}
+              value={JSON.stringify({
+                data: "Vacciné(e) Positif(ve)",
+                nom: `${userInfo.nom}`,
+                prenom: `${userInfo.prenom}`,
+              })}
               color="red"
               logo={require("../../assets/img/valide.png")}
               logoSize={50}
