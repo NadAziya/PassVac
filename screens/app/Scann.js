@@ -10,13 +10,20 @@ import {
 } from "react-native";
 
 import { BarCodeScanner } from "expo-barcode-scanner";
-import AlertVerif from "../../components/AlertVerif";
+
 import Colors from "../../constants/colors/Colors";
+import AlertVerifV from "../../components/AlertVerifV";
+import AlertVerifNV from "../../components/AlertVerifNV";
+import AlertVerifInit from "../../components/AlertVerifInit";
 
 export default function Accueil() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState();
+  const [text2, setText2] = useState();
+  const [text3, setText3] = useState();
+  const [text4, setText4] = useState();
+  const [text5, setText5] = useState();
 
   useEffect(() => {
     (async () => {
@@ -26,16 +33,13 @@ export default function Accueil() {
   }, []);
 
   const handleBarCodeScanned = (qrdata) => {
-    const { data, nom, prenom } = JSON.parse(qrdata.data);
+    const { data, nom, prenom, dateVac, dateTest } = JSON.parse(qrdata.data);
     setScanned(true);
     setText(data);
     setText2(nom);
     setText3(prenom);
-
-    console.log(data);
-    console.log(nom);
-    console.log(prenom);
-    //alert(` L'état du patient : ${data} ` );
+    setText4(dateVac);
+    setText5(dateTest);
   };
 
   if (hasPermission === null) {
@@ -48,17 +52,87 @@ export default function Accueil() {
   const Verify = () => {
     if (text == "Vacciné(e) Négatif(ve)") {
       return (
-        <AlertVerif
+        <AlertVerifV
           text="GoPass valide"
           etat={text}
+          nom={text2}
+          prenom={text3}
+          dateVac={text4}
+          dateTest={text5}
           style={{ backgroundColor: "green" }}
         />
       );
-    } else {
+    }
+    if (text == "Donnée non existante") {
       return (
-        <AlertVerif
+        <AlertVerifInit
           text="GoPass invalide"
           etat={text}
+          nom={text2}
+          prenom={text3}
+          style={{ backgroundColor: "red" }}
+        />
+      );
+    }
+
+    if (text == "Vacciné(e) Positif(ve)") {
+      return (
+        <AlertVerifV
+          text="GoPass Invalide"
+          etat={text}
+          dateVac={text4}
+          dateTest={text5}
+          nom={text2}
+          prenom={text3}
+          style={{ backgroundColor: "red" }}
+        />
+      );
+    }
+
+    if (text == "Non vacciné(e) Positif(ve)") {
+      return (
+        <AlertVerifNV
+          text="GoPass Invalide"
+          etat={text}
+          dateTest={text5}
+          nom={text2}
+          prenom={text3}
+          style={{ backgroundColor: "red" }}
+        />
+      );
+    }
+    if (text == "Non vacciné(e) Négatif(ve)") {
+      return (
+        <AlertVerifNV
+          text="GoPass Invalide"
+          etat={text}
+          dateTest={text5}
+          nom={text2}
+          prenom={text3}
+          style={{ backgroundColor: "red" }}
+        />
+      );
+    }
+    if (text == "Vacciné(e) 1dose Négatif(ve)") {
+      return (
+        <AlertVerifNV
+          text="GoPass Invalide"
+          etat={text}
+          dateTest={text5}
+          nom={text2}
+          prenom={text3}
+          style={{ backgroundColor: "red" }}
+        />
+      );
+    }
+    if (text == "Vacciné(e) 1dose Positif(ve)") {
+      return (
+        <AlertVerifNV
+          text="GoPass Invalide"
+          etat={text}
+          dateTest={text5}
+          nom={text2}
+          prenom={text3}
           style={{ backgroundColor: "red" }}
         />
       );

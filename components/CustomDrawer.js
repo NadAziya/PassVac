@@ -49,7 +49,7 @@ const CustomDrawer = (props) => {
                 marginLeft: 6,
               }}
             >
-              Deconnexion
+              Désactiver mon compte
             </Text>
           </View>
         </TouchableOpacity>

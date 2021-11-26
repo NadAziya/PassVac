@@ -83,9 +83,11 @@ const MonPass = ({ props, navigation }) => {
         return (
           <QRCode
             value={JSON.stringify({
-              data: "Non vacciné(e) Négatif(ve)",
+              data: "Donnée non existante",
               nom: `${userInfo.nom}`,
               prenom: `${userInfo.prenom}`,
+              dateVac: `${userInfo.date_2dose}`,
+              dateTest: `${userInfo.date_test}`,
             })}
             color="black"
             size={200}
@@ -98,6 +100,8 @@ const MonPass = ({ props, navigation }) => {
               data: "Non vacciné(e) Positif(ve)",
               nom: `${userInfo.nom}`,
               prenom: `${userInfo.prenom}`,
+              dateVac: `${userInfo.date_2dose}`,
+              dateTest: `${userInfo.date_test}`,
             })}
             size={200}
             color="red"
@@ -115,6 +119,8 @@ const MonPass = ({ props, navigation }) => {
               data: "Vacciné(e) 1dose Négatif(ve)",
               nom: `${userInfo.nom}`,
               prenom: `${userInfo.prenom}`,
+              dateVac: `${userInfo.date_2dose}`,
+              dateTest: `${userInfo.date_test}`,
             })}
             color="orange"
             size={200}
@@ -130,6 +136,8 @@ const MonPass = ({ props, navigation }) => {
               data: "Vacciné(e) 1dose Positif(ve)",
               nom: `${userInfo.nom}`,
               prenom: `${userInfo.prenom}`,
+              dateVac: `${userInfo.date_2dose}`,
+              dateTest: `${userInfo.date_test}`,
             })}
             color="red"
             size={200}
@@ -146,6 +154,8 @@ const MonPass = ({ props, navigation }) => {
                 data: "Vacciné(e) Négatif(ve)",
                 nom: `${userInfo.nom}`,
                 prenom: `${userInfo.prenom}`,
+                dateVac: `${userInfo.date_2dose}`,
+                dateTest: `${userInfo.date_test}`,
               })}
               color="green"
               logo={require("../../assets/img/valide.png")}
@@ -163,6 +173,8 @@ const MonPass = ({ props, navigation }) => {
                 data: "Vacciné(e) Positif(ve)",
                 nom: `${userInfo.nom}`,
                 prenom: `${userInfo.prenom}`,
+                dateVac: `${userInfo.date_2dose}`,
+                dateTest: `${userInfo.date_test}`,
               })}
               color="red"
               logo={require("../../assets/img/valide.png")}
