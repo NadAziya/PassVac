@@ -20,14 +20,15 @@ const DetailPass = (props) => {
         />
       </View>
 
-      <View style={{ marginTop: 6 }}>
+      <View style={{ marginTop: 6, width: "60%" }}>
         <Text
           style={{
             fontWeight: "600",
-            fontSize: 16,
+            fontSize: 15,
+            textAlign: "center",
           }}
         >
-          {props.vaccination} COVID-19
+          {props.vaccination}
         </Text>
       </View>
       <TouchableOpacity

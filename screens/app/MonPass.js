@@ -211,7 +211,11 @@ const MonPass = ({ props, navigation }) => {
             }}
           >
             <DetailPass
-              vaccination={userInfo.vaccination}
+              vaccination={
+                userInfo.etat == "/"
+                  ? "N'oubliez pas de vous rendre au centre de vaccination pour mettre à jour votre QR CODE."
+                  : `${userInfo.vaccination} COVID-19`
+              }
               onPress={() => setVisible(true)}
             />
           </View>
@@ -246,6 +250,7 @@ const MonPass = ({ props, navigation }) => {
                 </Text>
               </View>
             </View>
+
             <View style={{ flexDirection: "row" }}>
               <View
                 style={{
