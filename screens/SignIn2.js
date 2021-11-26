@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   ScrollView,
   Alert,
+  Image,
 } from "react-native";
 import DatePicker from "react-native-datepicker";
 
@@ -89,16 +90,25 @@ export default function SignInCostum(props, navigation) {
         <ScrollView style={{ height: "70%" }}>
           <View
             style={{
+              flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
-              paddingTop: 20,
+              paddingTop: 10,
             }}
           >
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+              }}
+              source={require("../assets/img/logo.png")}
+            />
             <Text
               style={{
                 fontSize: 25,
                 fontWeight: "bold",
-                color: Colors.third,
+                color: Colors.secondary,
+                marginLeft: 5,
               }}
             >
               GoPass
