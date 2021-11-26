@@ -24,7 +24,8 @@ const DetailPass = (props) => {
         <Text
           style={{
             fontWeight: "600",
-            fontSize: 15,
+            fontSize: 13,
+            lineHeight: 18,
             textAlign: "center",
           }}
         >
