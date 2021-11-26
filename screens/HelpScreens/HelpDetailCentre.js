@@ -29,7 +29,7 @@ const HelpDetaiCentre = () => {
       >
         <Image
           style={{ height: 250, width: 250 }}
-          source={require("../../assets/img/helpVac.jpg")}
+          source={require("../../assets/img/help_Centre.jpg")}
         />
       </View>
       <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
@@ -47,7 +47,7 @@ const HelpDetaiCentre = () => {
       >
         <Image
           style={{ height: 200, width: 310 }}
-          source={require("../../assets/img/helpVac2.jpg")}
+          source={require("../../assets/img/help_detailCentre.jpg")}
         />
       </View>
     </ScrollView>

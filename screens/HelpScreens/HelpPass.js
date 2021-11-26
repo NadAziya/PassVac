@@ -14,6 +14,51 @@ const HelpPass = () => {
           marginBottom: 15,
         }}
       >
+        Comment accéder à mon Pass ?
+      </Text>
+      <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
+        Vous pouvez accéder à votre Pass en cliquant sur la card 'Pass
+        sanitaire' qui se trouve sur votre écran d'accueil.
+      </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          marginVertical: 20,
+        }}
+      >
+        <Image
+          style={{ height: 400, width: 200 }}
+          source={require("../../assets/img/help_accesPass.jpg")}
+        />
+      </View>
+      <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
+        Ou sinon en cliquant sur l'option menu 'Mon Pass'.
+      </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          marginVertical: 20,
+        }}
+      >
+        <Image
+          style={{ height: 260, width: 260 }}
+          source={require("../../assets/img/help_accesPass1.jpg")}
+        />
+      </View>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "500",
+          padding: 10,
+          textAlign: "center",
+          color: "blue",
+          marginBottom: 15,
+        }}
+      >
         Comment avoir mon GoPass ?
       </Text>
       <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
@@ -36,7 +81,8 @@ const HelpPass = () => {
       <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
         Vous devez vous rendre au plus vite à un centre disposant de notre
         système GoPass, vous serrez aussitôt mis à jour. Un CODE QR unique vous
-        est généré selon votre état face au COVID-19.
+        est généré selon votre état face au COVID-19. ci-dessous un Pass valide
+        indiquant l'état vacciné et négatif au COVID-19.
       </Text>
       <View
         style={{
@@ -64,7 +110,7 @@ const HelpPass = () => {
       >
         <Image
           style={{ height: 250, width: 200 }}
-          source={require("../../assets/img/helpPass2.jpg")}
+          source={require("../../assets/img/help_detailpass.jpg")}
         />
       </View>
     </ScrollView>

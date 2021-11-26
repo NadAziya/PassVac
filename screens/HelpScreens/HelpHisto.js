@@ -30,7 +30,7 @@ const HelpHisto = () => {
       >
         <Image
           style={{ height: 360, width: 205 }}
-          source={require("../../assets/img/helpHisto1.jpg")}
+          source={require("../../assets/img/help_accesHisto.jpg")}
         />
       </View>
       <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
@@ -46,7 +46,7 @@ const HelpHisto = () => {
       >
         <Image
           style={{ height: 250, width: 175 }}
-          source={require("../../assets/img/passHisto.jpg")}
+          source={require("../../assets/img/help_Histo.jpg")}
         />
       </View>
       <Text
@@ -57,7 +57,8 @@ const HelpHisto = () => {
           marginTop: 15,
         }}
       >
-        pour afficher plus de détails concernant vos résultats, cliquer.
+        pour afficher plus de détails concernant vos résultats, cliquer sur
+        l'îcone fléche en bleue.
       </Text>
       <View
         style={{
