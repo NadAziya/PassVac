@@ -113,6 +113,39 @@ const HelpPass = () => {
           source={require("../../assets/img/help_detailpass.jpg")}
         />
       </View>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "500",
+          padding: 10,
+          textAlign: "center",
+          color: "blue",
+          marginBottom: 15,
+        }}
+      >
+        Une fois mes données mis à jour, comment je rafraichis mes modifications
+        sur mon GoPass ?
+      </Text>
+      <Text style={{ padding: 10, textAlign: "justify", lineHeight: 20 }}>
+        Tirez vers le bas pour rafraîchir votre écran.
+      </Text>
+      <View
+        style={{
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          marginVertical: 20,
+        }}
+      >
+        <Image
+          style={{ height: 500, width: 250, marginBottom: 20 }}
+          source={require("../../assets/img/help_scrollRefreshPass.jpg")}
+        />
+        <Image
+          style={{ height: 500, width: 250 }}
+          source={require("../../assets/img/help_updatePass.jpg")}
+        />
+      </View>
     </ScrollView>
   );
 };

@@ -25,15 +25,17 @@ const Accueil = (props, navigation) => {
   const [loading, setLoading] = useState(false);
 
   const [userInfo, setUserInfo] = useState([]);
-
+  const [authCheck, setAuth] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const db = firebase.firestore();
 
   const getUser = useCallback(async () => {
     setLoading(true);
     setRefreshing(true);
+    if (!authCheck) return;
     try {
       let currentUser = firebase.auth().currentUser;
+      if (!currentUser) return;
       const profile = db
         .collection("users")
         .doc(currentUser.phoneNumber)
@@ -54,6 +56,14 @@ const Accueil = (props, navigation) => {
 
   useEffect(() => {
     getUser();
+  }, [authCheck]);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user && !authCheck) {
+        setAuth(true);
+      }
+    });
   }, []);
 
   const renderElement = () => {
@@ -72,7 +82,7 @@ const Accueil = (props, navigation) => {
           <MaSante
             style={{ backgroundColor: "red" }}
             children="Isolemment recommandé,"
-            text=" Veuillez patienter 03mois pour être vacciné(e), respectez les gestes barriéres et protégez ainsi vos proches;"
+            text=" il est nécessaire d’attendre au moins deux mois après la fin des symptômes avant de procéder à la vaccination."
           />
         );
       }
