@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, ScrollView, Text } from "react-native";
 
 const Jandj = () => {
   return (
@@ -17,7 +11,7 @@ const Jandj = () => {
       }}
     >
       <Text style={{ fontSize: 20, fontWeight: "600", color: "blue" }}>
-        Vaccin Jonhson & Jonhson contre la COVID-19 : ce qu’il faut savoir
+        Vaccin Jonhson and Jonhson contre la COVID-19 : ce qu’il faut savoir
       </Text>
       <View
         style={{ flexDirection: "column", paddingTop: 20, paddingLeft: 15 }}

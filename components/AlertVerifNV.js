@@ -92,6 +92,5 @@ const styles = StyleSheet.create({
     flexDirection: "column",
 
     marginBottom: 50,
-    //backgroundColor: "#58CA4E",
   },
 });

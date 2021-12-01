@@ -1,15 +1,10 @@
 import "react-native-gesture-handler";
 import React, { useContext } from "react";
 import { TouchableOpacity, View, Image, Button } from "react-native";
-import {
-  NavigationContainer,
-  getFocusedRouteNameFromRoute,
-} from "@react-navigation/native";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
-import { useNavigation } from "@react-navigation/native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
@@ -34,11 +29,10 @@ import Jandj from "../screens/app/Jandj";
 
 import CustomDrawer from "../components/CustomDrawer";
 
-import firebase from "firebase";
 import "@firebase/auth";
 
 import AuthContext from "../auth/context";
-import AuthStorage from "../auth/storage";
+
 import HelpPass from "../screens/HelpScreens/HelpPass";
 import HelpHisto from "../screens/HelpScreens/HelpHisto";
 import HelpScan from "../screens/HelpScreens/HelpScan";
@@ -49,16 +43,13 @@ const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
 const NavigationDrawerStructure = (props) => {
-  //Structure for the navigatin Drawer
   const toggleDrawer = () => {
-    //Props to open/close the drawer
     props.navigationProps.toggleDrawer();
   };
 
   return (
     <View style={{ flexDirection: "row" }}>
       <TouchableOpacity onPress={() => toggleDrawer()}>
-        {/*Donute Button Image */}
         <View style={{ marginLeft: 10 }}>
           <Ionicons name="ios-menu" size={30} color="black" />
         </View>
@@ -113,7 +104,7 @@ const getHeaderTitle = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? "Feed";
 
   switch (routeName) {
-    case "Accueil":
+    case "StackHome":
       return "Accueil";
     case "Scann":
       return "Vérification";
@@ -139,13 +130,13 @@ function Home() {
 
 function Historique({ navigation }) {
   return (
-    <Stack.Navigator initialRouteName="Donnees">
+    <Stack.Navigator initialRouteName="Data">
       <Stack.Screen
         options={{
           headerTitle: "Mon Historique ",
           headerLeft: () => <GoBackFunction navigationProps={navigation} />,
         }}
-        name="Donnees"
+        name="Data"
         component={Donnee}
       />
     </Stack.Navigator>
@@ -262,13 +253,13 @@ function Aide({ navigation }) {
 
 function CentreVaccination({ navigation }) {
   return (
-    <Stack.Navigator initialRouteName="CentreVac">
+    <Stack.Navigator initialRouteName="CentreVacc">
       <Stack.Screen
         options={{
           headerTitle: "Les centres de vaccination",
           headerLeft: () => <GoBackFunction navigationProps={navigation} />,
         }}
-        name="CentreVac"
+        name="CentreVacc"
         component={CentreVac}
       />
     </Stack.Navigator>
@@ -300,13 +291,13 @@ function Scann() {
 function Navigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Accueil"
-      tabBarOptions={{
+      initialRouteName="StackHome"
+      screenOptions={{
         activeTintColor: Colors.third,
       }}
     >
       <Tab.Screen
-        name="Accueil"
+        name="StackHome"
         component={Home}
         options={{
           headerShown: false,

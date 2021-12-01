@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView, Text, StyleSheet } from "react-native";
+import { View, ScrollView, Text } from "react-native";
 
 const Astrazeneca = () => {
   return (

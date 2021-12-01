@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
-  Button,
   Image,
   ActivityIndicator,
   ScrollView,
@@ -12,11 +11,9 @@ import {
 import firebase from "firebase";
 import "@firebase/auth";
 import AuthContext from "../../auth/context";
-import AuthStorage from "../../auth/storage";
-import Colors from "../../constants/colors/Colors";
+
 import { Backdrop } from "react-native-backdrop";
 
-//import { QRCode } from "react-native-custom-qr-codes-expo";
 import QRCode from "react-native-qrcode-svg";
 import DetailPass from "../../components/DetailPass";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -34,12 +31,7 @@ const MonPass = ({ props, navigation }) => {
   const [userInfo, setUserInfo] = useState([]);
   const [visible, setVisible] = useState(false);
 
-  const [refreshing, setRefreshing] = React.useState(false);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handleOpen = () => {
     setVisible(true);

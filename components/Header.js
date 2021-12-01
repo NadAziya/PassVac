@@ -3,19 +3,15 @@ import {
   StyleSheet,
   View,
   Text,
-  Dimensions,
   TouchableOpacity,
   Image,
   Alert,
-  Button,
 } from "react-native";
-import { Avatar } from "react-native-image-avatars";
-import { Ionicons } from "@expo/vector-icons";
 
 import Colors from "../constants/colors/Colors";
 
 import * as ImagePicker from "expo-image-picker";
-import * as Permissions from "expo-permissions";
+
 import { Camera } from "expo-camera";
 import firebase from "firebase";
 
@@ -53,8 +49,6 @@ export default function Header(props) {
 
     setPickedImage(image.uri);
     props.onImageTaken(image.uri);
-    //const response = await fetch(uri);
-    // const blob = await response.blob();
 
     const imageRef = ref.child(props.id.concat(".jpg"));
 
@@ -80,13 +74,9 @@ export default function Header(props) {
         console.log(err);
       });
   };
-  // imageRef.getDownloadURL().then(async (url) => {
-  // console.log(url);
-
-  //};
 
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.headerContainer}>
         <Text
           style={{
@@ -124,21 +114,12 @@ export default function Header(props) {
             Ajouter une photo
           </Text>
         </TouchableOpacity>
-
-        {/*<Ionicons.Button
-          name="add-circle"
-          size={40}
-          color="grey"
-          onPress={takeImageHandler}
-          backgroundColor="transparent"
-        />*/}
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
   headerContainer: {
     marginHorizontal: 10,
     justifyContent: "center",

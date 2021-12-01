@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, ScrollView, Text } from "react-native";
 
 const Sinovac = () => {
   return (

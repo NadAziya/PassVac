@@ -6,7 +6,6 @@ import {
   Button,
   Image,
   Dimensions,
-  Modal,
 } from "react-native";
 
 import { BarCodeScanner } from "expo-barcode-scanner";

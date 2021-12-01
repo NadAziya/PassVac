@@ -1,10 +1,8 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
   Text,
-  KeyboardAvoidingView,
-  Platform,
   TouchableWithoutFeedback,
   Keyboard,
   ActivityIndicator,
@@ -14,27 +12,19 @@ import {
 } from "react-native";
 import DatePicker from "react-native-datepicker";
 
-import { useDispatch } from "react-redux";
-
 import firebase from "firebase";
-
-import * as userActions from "../store/Actions/userAction";
 
 import Header from "../components/Header";
 import ButtonMain from "../components/MainButton";
 import Input from "../components/Input";
 
-import { CheckBox } from "react-native-elements";
 import Colors from "../constants/colors/Colors";
-import { useNavigation } from "@react-navigation/core";
 
 export default function SignInCostum(props, navigation) {
   const [isLoading, setIsLoading] = useState(false);
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState("");
   const [dateNes, setDateNes] = useState("");
-
-  const dispatch = useDispatch();
 
   const [selectedImage, setImage] = useState();
 
@@ -46,7 +36,7 @@ export default function SignInCostum(props, navigation) {
   let currentUser = firebase.auth().currentUser;
   const onSigninHandler = async () => {
     setIsLoading(true);
-    let cDate = new Date(dateNes);
+
     try {
       console.log(firebase.auth().currentUser);
 
@@ -221,6 +211,5 @@ const styles = StyleSheet.create({
     marginLeft: 33,
     marginBottom: 5,
     color: "gray",
-    //fontWeight: "bold",
   },
 });

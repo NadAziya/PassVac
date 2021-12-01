@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -8,7 +8,6 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  TextInput,
   TouchableOpacity,
   Alert,
   ActivityIndicator,
@@ -17,7 +16,6 @@ import {
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 
 import firebase from "firebase";
-import { getFirestore } from "firebase/firestore";
 
 import ButtonMain from "../components/MainButton";
 import Input from "../components/Input";
@@ -32,27 +30,23 @@ export default function Auth(props, navigation) {
 
   const { user, setUser } = useContext(AuthContext).user;
 
-  const phoneInput = useRef(null);
-  const buttonPress = () => {
-    Alert.alert(phoneNumber);
-  };
-
   const recaptchaVerifier = useRef(null);
 
   const db = firebase.firestore();
 
   const sendVerification = () => {
-    // if (phoneNumber.length < 13) {
-    //  Alert.alert(
-    //   "Erreur",
-    //  "Veuillez saisir un numero précéder de +213 et la suite de votre numero sans 0",
-    //  [{ text: "OK" }]
-    // );
-    //  }
-    const phoneProvider = new firebase.auth.PhoneAuthProvider();
-    phoneProvider
-      .verifyPhoneNumber(phoneNumber, recaptchaVerifier.current)
-      .then(setVerificationId);
+    if (phoneNumber.length < 13) {
+      Alert.alert(
+        "Erreur",
+        "Veuillez saisir un numero précéder de +213 et la suite de votre numero sans 0",
+        [{ text: "OK" }]
+      );
+    } else {
+      const phoneProvider = new firebase.auth.PhoneAuthProvider();
+      phoneProvider
+        .verifyPhoneNumber(phoneNumber, recaptchaVerifier.current)
+        .then(setVerificationId);
+    }
   };
 
   const confirmCode = () => {
@@ -94,16 +88,6 @@ export default function Auth(props, navigation) {
         }
         console.log(err);
       });
-  };
-
-  const onPressContinue = () => {
-    if (phoneNumber && phoneNumber.length === 10) {
-      props.navigation.navigate("Otp");
-    } else {
-      Alert.alert("Erreur", "Veuillez saisir un numero de 10 chiffres", [
-        { text: "OK" },
-      ]);
-    }
   };
 
   if (!verificationId)
@@ -159,19 +143,6 @@ export default function Auth(props, navigation) {
                 secureTextEntry={false}
                 style={{ width: "80%", height: 55, marginBottom: 15 }}
               />
-              {/*<PhoneInput
-                ref={phoneInput}
-                defaultValue={phoneNumber}
-                defaultCode="IN"
-                layout="first"
-                withShadow
-                autoFocus
-                containerStyle={styles.phoneContainer}
-                textContainerStyle={styles.textInput}
-                onChangeFormattedText={(text) => {
-                  setphoneNumber(text);
-                }}
-              />*/}
             </View>
             <View
               style={{

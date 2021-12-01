@@ -2,7 +2,6 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Auth from "../screens/Auth";
-import Otp from "../screens/Otp";
 
 import SignInCostum from "../screens/SignIn2";
 import Info from "../screens/app/info";
@@ -17,13 +16,6 @@ const AuthNavigator = () => {
         component={Auth}
         options={{
           headerTitle: "Authentifiez-vous",
-        }}
-      />
-      <Stack.Screen
-        name="Otp"
-        component={Otp}
-        options={{
-          headerTitle: "Vérifier le code",
         }}
       />
 

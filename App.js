@@ -3,12 +3,6 @@ import React, { useState } from "react";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import ReduxThunk from "redux-thunk";
-
-import userReducer from "./store/Reducers/userReducer";
-
 import * as firebase from "firebase";
 
 import "@firebase/auth";
@@ -18,13 +12,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "./Navigation/AuthNavigator";
 import AuthContext from "./auth/context";
 import AuthStorage from "./auth/storage";
-import SignIn2 from "./screens/SignIn2";
-
-const rootReducer = combineReducers({
-  users: userReducer,
-});
-
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 export default function App(props) {
   const [fontLoad, setFontLoad] = useState(false);
@@ -45,12 +32,6 @@ export default function App(props) {
   }
 
   const fetchFonts = async () => {
-    // firebase.auth().onAuthStateChanged((user) => {
-    //   if (user) {
-    //     setUser(user);
-    //   }
-    // });
-
     const infoBackup = await AuthStorage.getInfo();
     const userBackup = await AuthStorage.getUser();
 
@@ -87,17 +68,15 @@ export default function App(props) {
   }
 
   return (
-    <Provider store={store}>
-      <AuthContext.Provider
-        value={{
-          user: { user, setUser },
-          info: { info, setInfo },
-        }}
-      >
-        <NavigationContainer>
-          {user && info ? <HomeNavigation /> : <AuthNavigator />}
-        </NavigationContainer>
-      </AuthContext.Provider>
-    </Provider>
+    <AuthContext.Provider
+      value={{
+        user: { user, setUser },
+        info: { info, setInfo },
+      }}
+    >
+      <NavigationContainer>
+        {user && info ? <HomeNavigation /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 }

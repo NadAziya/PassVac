@@ -208,7 +208,6 @@ const CentreVac = (props) => {
                   color: "blue",
                 }}
               >
-                {" "}
                 <MaterialCommunityIcons
                   name="hospital-marker"
                   size={35}
