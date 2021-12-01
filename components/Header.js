@@ -16,6 +16,7 @@ import Colors from "../constants/colors/Colors";
 
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
+import { Camera } from "expo-camera";
 import firebase from "firebase";
 
 export default function Header(props) {
@@ -26,7 +27,7 @@ export default function Header(props) {
   const db = firebase.firestore();
 
   const verifyPermissions = async () => {
-    const result = await Permissions.askAsync(Permissions.CAMERA);
+    const result = await Camera.requestPermissionsAsync();
 
     if (result.status !== "granted") {
       Alert.alert(
