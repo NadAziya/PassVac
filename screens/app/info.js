@@ -14,7 +14,7 @@ import AuthStorage from "../../auth/storage";
 
 import ButtonMain from "../../components/MainButton";
 
-export default function info(props, navigation) {
+export default function Info(props, navigation) {
   const [sliderState, setSliderState] = useState({ currentPage: 0 });
   const { width, height } = Dimensions.get("window");
   const { info, setInfo } = useContext(AuthContext).info;
