@@ -24,7 +24,13 @@
       },
       "versionCode": 1,
       "package": "com.nouna321.PassVaccProject",
-      "permissions": ["CAMERA"]
+      "permissions": [
+        "CAMERA",
+        "READ_INTERNAL_STORAGE",
+        "WRITE_INTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
